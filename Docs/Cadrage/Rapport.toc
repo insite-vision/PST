@@ -1,0 +1,16 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Remerciement}{1}
+\contentsline {section}{\numberline {2}Introduction}{2}
+\contentsline {section}{\numberline {3}Presentation}{3}
+\contentsline {subsection}{\numberline {3.1}Description}{3}
+\contentsline {subsection}{\numberline {3.2}Objectifs}{3}
+\contentsline {section}{\numberline {4}Solutions}{4}
+\contentsline {subsection}{\numberline {4.1}Detections de bords avec l'algorithme de Canny}{4}
+\contentsline {subsection}{\numberline {4.2}Detections de formes avec reseau neuronal}{5}
+\contentsline {section}{\numberline {5}Cadrage}{6}
+\contentsline {subsection}{\numberline {5.1}Budget}{6}
+\contentsline {subsection}{\numberline {5.2}Dates clefs}{6}
+\contentsline {subsection}{\numberline {5.3}Organisation}{6}
+\contentsline {subsubsection}{\numberline {5.3.1}Demarche}{6}
+\contentsline {subsection}{\numberline {5.4}Planning}{6}
+\contentsline {section}{\numberline {6}Annexes}{7}
