@@ -18,11 +18,11 @@ def auto_canny(image, sigma=0.33):
     # return the edged image
     return edged
 
-files = [ f for f in listdir("Data/") if isfile(join("Data/",f))]
+files = [ f for f in listdir("../Data/") if isfile(join("../Data/",f))]
 
 for image in files:
     print "Analysing "+image
-    img = cv2.imread("Data/"+image , 0)
+    img = cv2.imread("../Data/"+image , 0)
     #auto = auto_canny(img)
     edge = cv2.Sobel(img,cv2.CV_64F, 1, 1, ksize=5)
     
