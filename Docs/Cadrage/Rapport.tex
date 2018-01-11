@@ -59,8 +59,13 @@
 	\end{itemize}
 
 	\newpage
-\section{Solutions}
-	\subsection{Detections de bords avec l'algorithme de Canny}
+\section{Demarche}
+	\subsection{Detections de formes}
+
+	\subsubsection{Filtrage}
+	{TODO: REMPLIR}
+	
+	\subsubsection{Algorithmes de detections de bords}
 	Nous avons debuter nos recherches avec une solution evidente, l'Algorithme de Canny. Cet algorithme fonctionne en plusieurs etapes:
 	\begin{enumerate}
 		\item \textbf{Reduction du bruit:}\\
@@ -100,15 +105,19 @@
 		\end{subfigure}
 		\label{fig:canny}
 	\end{figure}
-
-	Cette methode nous permet d'analyser rapidement un releve, et d'obtenir un debut d'analyse que nous pouvons utiliser avec la methode suivante
-	\subsection{Detections de bruits}
-	Nous avons ensuite cherche a detecter le bruit caracteristiques de ce genre de releve. En effet, dans des champs on retrouve de nombreux objets metalliques contemporains
-	et proche de la surface. Ces objets ont une signature typique, avec l'objet en lui meme ayant une reponse tres positive avec une \quote{couronne} tres negative autour. 
-	Nous avons cherche a entrainer un reseau neuronal a detecter si une image contenait un de ses bruits.
-	\subsubsection{Choix du reseau}
-	Pour cette tache, nous avons choisi un reseau convolutionnel
-	\subsubsection{Creations d'exemples}
+	
+	On observe que l'algorithme ne parvient a trouver les contours des objets d'interet. Cela est du a la haute quantite de bruit que l'on trouve dans l'image. On 
+	peut cependant trouver une densite de points plus eleve aux endroits d'interets.
+	TODO: AJOUTER PHOTO DETAILS 
+	Malgres des resultats peu encouragant avec des algorithmes classiques, nous avons decide d'utiliser un autre algorithme, celui
+	\subsubsection{Problemes rencontres}
+	TODO: A REMPLIR
+	
+	\subsection{Detections de bruits par reseaux neuronal}
+	\subsubsection{Caracterisation}
+	\subsubsection{Explication de l'approche}
+	\subsubsection{Problemes initiaux}
+	\subsubsection{Solutions}
 	Classifier a la main tout les exemples necessaires a l'entrainement du reseau etait une tache surhumaine. Par soucis d'efficacite, nous avons decide de construire nous meme
 	nos exemples, et des les utiliser en combination avec des exemples provenant des images, et classifie a la main.
 	Pour avoir une meilleure chance de creer un bruit proche de la realite, nous avons utilise 2 approches differentes:
@@ -116,16 +125,20 @@
 		\item Une approche informatique
 		\item Une approche mathemathique
 	\end{itemize}
-	\subsubsubsection{Approche Informatique}
 	L'approche informatique consiste a creer 2 cercles, de tailles variables,un noir et un blanc, ayant la meme origine. Ces cercles sont imprime sur une \quote{backplate} grise
 	avec du bruit genere aleatoirement. Afin d'ameliorer le resultat, du bruit est ajoute aux cercles, augmentant particulierement aux bords de ceux ci.
-	\subsubsubsection{Approche Mathematique}
+	
 	Nous avons genere une fonction mathematique se rapprochant de celle d'un dipole. 
-	\subsubsection{Entrainement}
-	\subsubsection{Resultats}
 
-	\subsection{Detections de formes avec reseau neuronal}
+	\subsubsection{Preparation du \textit{dataset}}
+	\subsubsection{Resultats}
+	Nous avons ensuite cherche a detecter le bruit caracteristiques de ce genre de releve. En effet, dans des champs on retrouve de nombreux objets metalliques contemporains
+	et proche de la surface. Ces objets ont une signature typique, avec l'objet en lui meme ayant une reponse tres positive avec une \quote{couronne} tres negative autour. 
+	Nous avons cherche a entrainer un reseau neuronal a detecter si une image contenait un de ses bruits.
+	\subsubsection{Choix du reseau}
+	Pour cette tache, nous avons choisi un reseau convolutionnel
 	\newpage
+
 \section{Cadrage}
 	\subsection{Budget}
 	\subsection{Dates clefs}
