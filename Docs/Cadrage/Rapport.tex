@@ -123,12 +123,13 @@
 	TODO: A REMPLIR
 	
 \newpage
-\section{Elaboration d'une nouvelle methodologie}
+\section{Developement d'une nouvelle methodologie}
 	\subsection{Detections de bruits par reseaux neuronal}
 	\subsubsection{Caracterisation}
 	\subsubsection{Explication de l'approche}
 	\subsubsection{Problemes initiaux}
 	\subsubsection{Solutions}
+	\subsubsubsection{Generation d'exemple}
 	Classifier a la main tout les exemples necessaires a l'entrainement du reseau etait une tache surhumaine. Par soucis d'efficacite, nous avons decide de construire nous meme
 	nos exemples, et des les utiliser en combination avec des exemples provenant des images, et classifie a la main.
 	Pour avoir une meilleure chance de creer un bruit proche de la realite, nous avons utilise 2 approches differentes:
@@ -138,17 +139,15 @@
 	\end{itemize}
 	L'approche informatique consiste a creer 2 cercles, de tailles variables,un noir et un blanc, ayant la meme origine. Ces cercles sont imprime sur une \quote{backplate} grise
 	avec du bruit genere aleatoirement. Afin d'ameliorer le resultat, du bruit est ajoute aux cercles, augmentant particulierement aux bords de ceux ci.
-	
+		
 	Nous avons genere une fonction mathematique se rapprochant de celle d'un dipole. 
-
+	\subsubsubsection{Traitement des images}
 	TODO : Parler de la preparation du dataset (decoupage, ajout de bruit sur nos exemples reel etc)
-\newpage
-\section{Resultats}
-
+	TODO : Expliquer le fait qu'on a pas eu le temps d'implementer
 \newpage
 \section{Bilan provisoire et perspectives}
 	\subsection{Bilan} %Changer le nom ?
-	\subsection{Ameliorations possibles}
+	\subsection{Implementation d'un reseau convolutionnel}
 	\subsection{Choix de la direction de recherche}
 
 \newpage
