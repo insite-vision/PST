@@ -1,1 +1,5 @@
 Data/
+Docs/Cadrage/*.bbl
+Docs/Cadrage/*.blg
+Scripts/PreparedData/
+Scripts/EdgeDetectionResults/
