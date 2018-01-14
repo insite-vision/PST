@@ -1,5 +1,7 @@
 Data/
 Docs/Cadrage/*.bbl
 Docs/Cadrage/*.blg
+*.swo
+*.swp
 Scripts/PreparedData/
 Scripts/EdgeDetectionResults/
