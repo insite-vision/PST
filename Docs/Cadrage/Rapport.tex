@@ -7,6 +7,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage[backend=biber]{biblatex}
+\usepackage{float}
 \usepackage{subcaption}
 
 \graphicspath{ {images/}}
@@ -107,7 +108,79 @@
 		\item Algorithmes de détections de bords.
 	\end{itemize}
 	\subsubsection{Filtrage}
-	{TODO: REMPLIR}
+	Nous avons cherché à "nettoyer" les images : atténuer le bruit, très présent dans certaines zones de l'image, et assez handicapant pour la détection de bord.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=5cm]{filter_input.png}
+		\caption{Exemple d'image bruitée}. 
+		\label{fig:FilterInput}
+	\end{figure}
+	\pagebreak
+	Nous avons pour cela commencé par appliquer les techniques classiques de réduction de bruit : 
+	\begin{itemize}
+		\item Flou gaussien
+		\item Filtres coupe-bande plus complexes (approche fréquentielle)
+		\item Dilatation/Érosion
+	\end{itemize}
+	\paragraph{\textbf{Flou gaussien}}
+	La manière la plus classique d'atténuer le bruit d'une image est le flou gaussien. Cette technique consiste à remplacer chaque pixel par la moyenne des ses voisins, avec une distance paramètrable.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=6cm]{filter_gaussian.png}
+		\caption{Image traitée avec un flou gaussien de 15 pixels}. 
+		\label{fig:FilterGaussian}
+	\end{figure}
+
+	\pagebreak
+	\paragraph{\textbf{Approche fréquentielle}}
+	Ici, l'idée est d'appliquer le filtre sur directement sur la transformée de fourier, affin de pouvoir choisir précisément les fréquences que l'on souhaite conserver ou supprimer.
+	L'approche la plus concluante à été d'appliquer un passe-bande pour supprimer les hautes fréquences (qui contiennent le bruit), ainsi que les basses fréquences pour augmenter le contraste.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\linewidth]{filter_fft.png}
+		\caption{Différentes étapes du traitement}. 
+		\label{fig:FilterFFT}
+	\end{figure}
+	On voit sur la figure \ref{fig:FilterFFT} le traittement séquentiel de l'image (de gauche à droite, puis de haut en bas) : on calcule la FFT, on applique un masque (le coupe-bande), puis on applique la FFT inverse. \\
+	Cette approche peut donner des résultats intéressants, mais le problème est que la bande de fréquence à garder dépend des images. On perd donc de vue l'objectif initial, : l'automatisation.
+
+	\pagebreak
+	\paragraph{\textbf{Dilatation/Érodation}}
+	La dilatation et l'érosion sont des traitements qui travaillent sur la morphologie de l'image.
+	La dilatation "dilate" les formes : elle augmente la superficie des structures.
+	À l'inverse, l'érosion réduit la superficie des structures, elle "érode" les bords.
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[b]{0.3\linewidth}
+			\includegraphics[width=\linewidth]{filter_dilate-erode_ex-base.png}
+			\caption{Image originelle}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.3\linewidth}
+			\includegraphics[width=\linewidth]{filter_dilate-erode_ex-dilate.png}
+			\caption{Dilatation}
+		\end{subfigure}
+		\begin{subfigure}[b]{0.3\linewidth}
+			\includegraphics[width=\linewidth]{filter_dilate-erode_ex-erode.png}
+			\caption{Érosion}
+		\end{subfigure}
+		\caption{Exemple de dilatation et d'érosion sur une image simple}. 
+		\label{fig:FilterDilateErodeEx}
+	\end{figure}
+	L'érosion permet donc de supprimer les petites formes, nous pouvons donc l'utiliser pour effacer notre bruit.
+	Pour compenser l'effet de l'érosion sur le reste de l'image, nous appliquons aussi une dilatation : le bruit est complètement effacé, et le reste est restauré par la dilatation.
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=6cm]{filter_dilate-erode.png}
+		\caption{Image traitée par 2 érosions suivies de 2 dilatations}. 
+		\label{fig:FilterDilateErode}
+	\end{figure}
+
+	\pagebreak
+	\paragraph{\textbf{Conclusion}}
+	Les techniques classiques de réduction de bruit dans une images semblent donner des résultats prometteurs : visuellement, l'image est plus lisible. Le résultat n'est cependant pas satisfaisant car, d'une part, le bruit reste présent, mais d'autre part -- et c'est le plus important -- le bruit n'est pas sufisemment effacé pour une détection de contours, comme nous allons le voir juste après.
+
+	\pagebreak
 
 	\subsubsection{Algorithmes de détections de bords}
 	Nous avons débuté par l'utilisation de l'opérateur de Sobel. Cet technique produit des images en noir et blanc ou les bords ont une valeur de blanc élevé. Un bord est défini comme un endroit de l'image ou la magnitude de son gradient est élevé. Son fonctionnement est décrit en plus de détails ci-dessous: 
