@@ -1,16 +1,65 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
 \select@language {french}
+\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1}Remerciement}{1}
+\defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {2}Introduction}{2}
-\contentsline {section}{\numberline {3}Presentation}{3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Pr\IeC {\'e}sentation}{3}
+\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1}Description}{3}
+\defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2}Objectifs}{3}
-\contentsline {section}{\numberline {4}Solutions}{4}
-\contentsline {subsection}{\numberline {4.1}Detections de bords avec l'algorithme de Canny}{4}
-\contentsline {subsection}{\numberline {4.2}Detections de formes avec reseau neuronal}{5}
-\contentsline {section}{\numberline {5}Cadrage}{6}
-\contentsline {subsection}{\numberline {5.1}Budget}{6}
-\contentsline {subsection}{\numberline {5.2}Dates clefs}{6}
-\contentsline {subsection}{\numberline {5.3}Organisation}{6}
-\contentsline {subsubsection}{\numberline {5.3.1}Demarche}{6}
-\contentsline {subsection}{\numberline {5.4}Planning}{6}
-\contentsline {section}{\numberline {6}Annexes}{7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Cadrage}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1}Budget}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2}Dates clefs}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3}Organisation}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.3.1}D\IeC {\'e}marche}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.4}Planning}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.5}Langages et technologies utilise}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}D\IeC {\'e}marche Initiale}{5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1}Relev\IeC {\'e}s g\IeC {\'e}omagn\IeC {\'e}tiques et origine de notre dataset}{5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2}D\IeC {\'e}tections d'objets}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.2.1}Filtrage}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.2.2}Algorithmes de d\IeC {\'e}tections de bords}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\textbf {Recherche du gradient d'intensit\IeC {\'e} de l'image}}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\textbf {Cr\IeC {\'e}ation d'une image des bords}}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.2.3}Probl\IeC {\`e}mes rencontres}{11}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}D\IeC {\'e}veloppement d'une nouvelle m\IeC {\'e}thodologie}{12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1}D\IeC {\'e}tections d'objet metallique par r\IeC {\'e}seaux neuronaux}{12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.1.1}Caract\IeC {\'e}risation}{12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.1.2}Explication de l'approche}{13}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.1.3}Probl\IeC {\`e}mes initiaux}{13}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.1.4}Solutions}{14}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7}Bilan provisoire et perspectives}{16}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1}Conclusion}{16}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2}Impl\IeC {\'e}mentation d'un r\IeC {\'e}seau de convolution}{16}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.3}Choix de la direction de recherche}{16}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8}Annexes}{18}

@@ -70,6 +70,7 @@
 	Nous tenons a remercier \[...\]
 	\newpage
 \section{Introduction}
+	
 	\newpage
 \section{Présentation}
 	\subsection{Description}
@@ -99,7 +100,15 @@
 	\newpage
 
 \section{Démarche Initiale}
-	\subsection{Carte de relevés géomagnétiques}
+	
+	\subsection{Relevés géomagnétiques et origine de notre dataset}
+	Les releve geomagnetique sont utilise en archeologie depuis une vingtaine d'annee. Elle permettent d'obtenir une idee de la repartition d'objets archeologiques interessant, et est surtout une approche non destructive: elle ne modifie pas les objets qu'elle observe. Un tel releve s'obtient en mesurant le magnetisme du sol, grace a un gradiometre magnetique, qui mesure la difference entre deux mesure du champs magnetiques faites par deux capteur. On construit ensuite des cartes en noir et blanc, representant les variations du champs magnetique par une variation de couleur. Une valeur positive forte sera blanche, tandis qu'une valeur negative forte sera noire. Ces releves permettent de detecter des structures et objet enfouis jusqu'a quelques metres de profondeur. En effet lorsque l'on construit, ou lorsque l'on fait cuire a l'aide de fours, on modifie les valeurs de champs magnetiques du terrain, et ces variations peuvent etre observe. Ces releves, mesurant le magnetisme du sol sont egalement tres sensible aux objets metalliques, et le sont d'autant plus que ces objets sont proche du capteur, ce qui peux poser problemes dans les zones ou une activite anthropologique recente a une lieu, car l'homme moderne rejette beaucoup de dechet metalliques. Ces objets metalliques contemporains sont des dipoles et provoquent sur les releves des anomalies tres caracteristiques. Nous discuterons de ces anomalies plus bas.
+
+	Nos releves nous proviennent tous du site archeologique de Marsal, en Moselle, et ont ete realise au cours d'une quinzaine d'annee, %TODO: CONTEXTUALISER%
+	. Cette region possede des marais salants, et on trouve des traces d'une exploitation industrielle tres importante aux alentours de l'age du Fer (VII\textsuperscript{eme}-I\textsuperscript{eme} siecle avant J.C). On trouve des traces de ces exploitations avec par exemple une quantite extrement eleve de briquetage (dechet de terre cuite, utilise pour la cuisson de la saumure); ce n'est pas moins de 4 millions de metres cube de briquetage accumule dans la region, soit presque deux fois le volume de la pyramide de Kheops. Le sel etait, et a longtemps ete une ressource strategique; car en plus de servir d'epice, le sel est utilise dans la conservation d'aliments, et les populations agricultrice, qui consome moins de viande doivent supplementer leur apport par du sel. La region a donc ete tres riche par le passe. Dans les fouilles, on trouve nombre de fours de grande taille, en forme de "U", qui servaient a la preparation du sel, et les corps trouves sur les sites de productions de sel sont mal nourris, ce qui semble indiquer que ce sont des esclaves, ou en tout cas des "employes" qui ne possedent pas les fours ni le sel qu'ils produisent. 
+
+
+
 	\subsection{Détections d'objets}
 	Nous avons décidé de débuter nos recherches de détections de formes par des solutions simples, avec l'attente qu'elle nous donnent des résultats de bonne qualité. L'attrait de ces méthodes étaient principalement qu'elles ne requiert pas de quantité de données importante, et qu'elles étaient a notre porte d'un point de vue académique. Nous avons donc approche le problème de deux façons différentes:
 	\begin{itemize}
@@ -110,7 +119,7 @@
 	{TODO: REMPLIR}
 
 	\subsubsection{Algorithmes de détections de bords}
-	Nous avons débuté par l'utilisation de l'opérateur de Sobel. Cet technique produit des images en noir et blanc ou les bords ont une valeur de blanc élevé. Un bord est défini comme un endroit de l'image ou la magnitude de son gradient est élevé. Son fonctionnement est décrit en plus de détails ci-dessous: 
+	Nous avons débuté par l'utilisation de l'opérateur de Sobel\cite{SobelOp}. Cette technique produit des images en noir et blanc ou les bords ont une valeur de blanc élevé. Un bord est défini comme un endroit de l'image ou la magnitude de son gradient est élevé. Cette technique est tres courament utilise en \textit{Computer Vision} et il est deja implemente dans la librairie openCV en Python. Son fonctionnement est décrit en plus de détails ci-dessous: 
 		\paragraph{\textbf{Recherche du gradient d'intensité de l'image}}
 				On applique un kernel de Sobel: il s'agit simplement de deux matrices 3x3 permettant de calculer la dérivé première verticale et horizontale par convolution. Ces deux matrices sont:
 				\\ \[G_x = \begin{bmatrix}  +1  & 0 & -1 \\ +2 & 0 & -2  \\ +1 &  0 & -1\end{bmatrix} 
@@ -144,13 +153,15 @@
 		\begin{subfigure}[b]{0.4\linewidth}
 			\includegraphics[width=\linewidth]{Sobel1a.png}
 			\caption{Image traite avec Sobel}
+			
 		\end{subfigure}
+		\caption{Traitement du releve magnetometrique de l'amphitheatre de Tarquimpol (Moselle), avec l'operateur Sobel}
 		\label{fig:OurSobel}
 	\end{figure}
 
 	Sur nos images, les résultats obtenus ne sont pas très pertinent. Le bruit est trop prévalent, et les bords des objets que nous cherchons a détecter sont trop faibles pour que l'opérateur de Sobel puisse donne des résultats intéressant.
 
-	Malgré des résultats peu encouragent avec Sobel, nous avons décidé d'utiliser un autre algorithme, celui de Canny. L'algorithme de Canny reprend les matrices de Sobel, et applique quelques opérations supplémentaire pour obtenir des bords plus mieux défini. Les détails de l'algorithme sont décrit ci-dessous:
+	Nous avons ensuite décidé d'utiliser un autre algorithme, celui de Canny \cite{CannyOp}. L'algorithme de Canny reprend les matrices de Sobel, et applique quelques opérations supplémentaire pour obtenir des bords plus mieux défini. Les détails de l'algorithme sont décrit ci-dessous
 	\begin{enumerate}
 		\item \textbf{Réduction du bruit:}\\
 			\indent On applique un filtre Gaussien 5x5 pour réduire le bruit présent dans l'image
@@ -170,7 +181,7 @@
 			sinon, ils sont aussi abandonne.\\
 
 	\end{enumerate}
-	Cet algorithme étant déjà disponible dans la librairie d'analyse de d'image PythonCV2, nous n'avons pas eu a l'implémenter, et nous avons bénéficié de quelques optimisations rendant l'exécution plus rapide.
+	Encore une fois cet algorithme était déjà disponible dans la librairie d'analyse de d'image PythonCV2, nous n'avons pas eu a l'implémenter, et nous avons bénéficié de quelques optimisations rendant l'exécution plus rapide.
 	Avec une image "propre", on obtient ce genre d'image:
 	\newpage
 	\begin{figure}[] %%NE PAS OUBLIER DE LINK L'AUTEUR : By Simpsons contributor, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=8904364
@@ -202,7 +213,7 @@
 	\end{figure}
 
 	Même si il y a une amélioration certaine par rapport a Sobel, l'algorithme ne parvient toujours pas a trouver les contours des objets d'intérêt, encore une fois a cause du a la grande quantité de bruit que l'on trouve dans l'image. Cependant  on observe une densité de points plus élevé aux niveau des endroits d'intérêts, comme ici, et une densité faible dans les zones ou on ne trouve ni objets ni bruit.
-
+	%Rajouter comparaison Canny Sobel sur Amphi.png
 	\begin{figure}[]%CORRIGER LA POSTION DES FIGURES
 		\centering
 		\begin{subfigure}[b]{0.4\linewidth}
@@ -227,10 +238,17 @@
 
 \newpage
 \section{Développement d'une nouvelle méthodologie}
-	\subsection{Détections de bruits par réseaux neuronaux}
-	Comme dit plus haut, les techniques classiques utilise dans l'analyse d'image sont inapplicables dans notre cas, du notamment au haut niveau de bruit présent dans les images a traites. Cependant, il est évidents que ce bruit n'est pas identique aux objets que nous cherchons, car sinon, les archéologues ne pourrait pas analyser ces images. Pour mieux diriger nos recherches nous avons choisi de détecter non pas un objets archéologique, mais un type de bruit très prévalent dans ces images: un dipôle. Les différences entre ce bruit et le reste de l'image étant trop subtils pour y établir un ensemble de règles prédéfinies, nous avons décidé d'utiliser des réseaux de convolution, qui sont un type de réseaux neuronaux, très adaptes a l'analyse d'image pour détecter automatiquement le bruit, dans l'espoir de non seulement nettoyer le bruit, avec par exemple un flou Gaussien, mais également de détecter les objets archéologiques.
+	\subsection{Détections d'objet metallique par réseaux neuronaux}
+	Comme dit plus haut, les techniques classiques utilise dans l'analyse d'image sont inapplicables dans notre cas, du notamment au haut niveau de bruit présent dans les images a traites. Cependant, il est évidents que ce bruit n'est pas identique aux objets que nous cherchons, car sinon, les archéologues ne pourrait pas analyser ces images. Pour mieux diriger nos recherches nous avons choisi de détecter un type particulier de signaux, ceux provenant d'objet metalliques. Les reseaux de convolution sont tres adapte a cettes taches; car ils filtrent l'image et developpent eux meme les regles qui definissent l'objet ainsi que leur filtres. Ils permettent de detecter des motifs dans des parties de l'image, et non plus sur des pixels individuels, comme etait le cas avec le filtrage ou la detection de bords. De plus, nous construisons un reseau n'apprenant a detecter qu'une seule classe d'objet, ce qui rendra l'apprentissage plus rapide. Si nous reussissons a detecter ces objets metalliques, nous pouvons alors:
+	\begin{enumerate}
+		\item "Nettoyer" les cartes de ces objets, qui ont tendance a rendre difficile la lecture, en appliquant un flou gaussien par exemple
+		\item Utiliser le meme reseau dans la detection de plus d'objet, en transferant l'apprentissage deja fait sur un plus grand nombre de classe
+	\end{enumerate}
+
 	\subsubsection{Caractérisation}
 	Les dipôles proviennent des objets métalliques contemporains, et se caractérisent par un pôle positif très fort au niveau de l'objet, suivi d'un halo circulaire négatif, dont le diamètre est approximativement 2 fois celui de l'objet. On peut voir sur la figure \ref{fig:DipoleExample} que les anomalies se ressemblent beaucoup, et son très présentes sur virtuellement toutes les cartes. De plus elles sont assez grandes pour être immédiatement reconnu sur nos relevés, ce qui simplifie la tache de labelisation des exemples a apprendre. 
+
+Un aspect interessant de ce probleme est, bien que si les dipoles produit par des objets metalliques contemporains sont generalement considere comme du bruit, ce n'est parce qu'ils \textit{ne font pas partie de la periode recherche}. En d'autre terme, un objet metallique recent est un objet archeologique comme les autres: il provient d'une certaine periode historique, a une ou plusieurs techniques de fabrication qui lui sont propre, provient d'un certains lieu... Dans certaines circonstance de recherche, en particulier lorsque le site et les objets est date de la protohistoire, des objets datant de l'occupation romaine sont vu comme du bruit. C'est le cas avec le site de marsal, ou une occupation romaine a eu pour consequence des rejets de dechets datant de l'ere romaine, comme des tuiles, qui provoque du "bruit" sur nos cartes. En somme, il ne faut pas voir notre approche comme une recherche de "bruit", mais simplement comme un changement d'objet d'interet. Nous en choisissons un distinct, commun, et donc plus facile a etudier.
 	%RAJOUTER IMAGE DIPOLE REEL
 	%RAJOUTER PLOT3D DIPOLE
 	\begin{figure}[]%CORRIGER LA POSTION DES FIGURES
@@ -254,6 +272,7 @@
 	Les réseaux de convolutions, que nous appellerons CNNs (Convolutionnal Neural Network) se composent de 2 parties
 	%EXPLICATION CNNS
 	\subsubsection{Problèmes initiaux}
+	Un des difficulte principale attache a ce projet est le petit nombre initial d'exemples. En tout, nous possedons 41 Releve geophysique. De toute evidence, une telle quantite de donnee ne suffirait pas a entrainer un modele : les bases de donnees modernes, en particulier celle d'images se compose de plusieurs centaine de milliers d'exemples; par exemple imageNet comporte plus de 14 Millions d'exemple (\url{http://image-net.org/about-stats}). Nous devons alors trouver des methodes permettant d'augmenter artificiellement le nombre d'exemple en prenant garde que ces exemples cree artificielement represente toujours bien la realite. De plus nous ne possedions aucune competence en terme d'apprentissage automatique, et nous allions devoir tout apprendre. 
 	\subsubsection{Solutions}
 	\textbf{Génération d'exemple}:\\
 	Classifier a la main tout les exemples nécessaires a l'entrainement du réseau était une tache surhumaine. Par soucis d'efficacité, nous avons décidé de construire nous même
@@ -275,22 +294,32 @@
 	\indent$\phi$ angle de phase a l'origine\\
 	\indent$i,j$ décalage horizontal et vertical, respectivement, par rapport a l'origine
 
-	Avec la génération aléatoire des paramètres de cette fonction, nous pouvons obtenir une grande variété d'exemple qui ressemble aux dipôles retrouves dans nos cartes.\\ \\ 
+	Avec la génération aléatoire des paramètres de cette fonction, nous pouvons obtenir une grande variété d'exemple qui ressemble aux dipôles retrouves dans nos cartes. 
 	%TODO: Rajouter exemple 3D Dipole Reel vs Dipole Genere
+	%TODO: Source image : Document PZP (Lieu)
 	\textbf{Traitement des images}:\\
-	\indent Afin d'obtenir une meilleure qualité d'exemples nous avons utilise ceux provenant de nos données originelle. Nous avons d'abord découpe chacune des images en carre de taille 96*96 pixels; en décalant le carre de 48 pixels verticalement et horizontalement a chaque fois, nous pouvons obtenir encore plus d'exemples. Au final, nous avons pu obtenir plus de 51000 carres, grâce au fait que les images était très grande (souvent plus de 2000*2000 pixels). Nous avons ensuite, a la main, trouve tous les carres contenant un dipôles. %RAJOUTER NOMBRE EXEMPLE ET PLUS DE PRECISIONS %  
-	%TODO : Parler de la preparation du dataset (decoupage, ajout de bruit sur nos exemples reel etc)
-	\\ \\
+	\indent Afin d'obtenir une meilleure qualité d'exemples nous avons utilise ceux provenant de nos données originelle. Nous avons d'abord découpe chacune des images en carre de taille 96*96 pixels; en décalant le carre de 48 pixels verticalement et horizontalement a chaque fois, nous pouvons obtenir encore plus d'exemples. Au final, nous avons pu obtenir plus de 51000 carres, grâce au fait que les images était très grande (souvent plus de 2000*2000 pixels). Nous avons ensuite, a la main, trouve tous les carres contenant un dipôles, ce qui nous donne 413 images de dipoles. Ces images, provenant du monde reelle sont tres variee, que ce soit par leur taille, leur position dans l'image ou encore leur nombre.//
+	Cependant, 400 images n'est toujours pas suffisant pour entrainer un reseau. Pour enrichir notre dataset nous avons decide d'appliquer quelques transformations sur chacune des images. A l'heure ou nous ecrivons ces lignes, nous avons implemente les transformations suivantes :
+	\begin{enumerate}
+		\item Rotation de l'image sur l'axe x 
+		\item Rotation de l'image sur l'axe y
+		\item Ajout de bruit
+	\end{enumerate}
+	
 	\textbf{Implémentation Réseau Neuronal}\\
 	\indent Nous avons implémenté un réseau neuronal classique s'entrainant sur des exemples générés. Le réseau reprends l'architecture de l'exemple de TensorFlow pour la classification de chiffres manuscrit avec une modification du nombre d'entrée pour s'adapter a la taille des exemples générés. Lors de l'entrainement, on a pu observer une très rapide maximisation du taux de détection, arrivant a un taux de réussite de 100\% sur les exemples de test en 4 époques. Nous avons ensuite tente d'appliquer ce réseau sur une carte, dans l'espoir de créer une \textit{heatmap} d'activation du réseau. Malheureusement, ce réseau possédait un taux d'erreur très élevé sur les exemples réels. Nous ne possédions pas le temps d'implémenter un réseau neuronal de convolution, et les résultats obtenu avec le réseau neuronal "classique" nous indiquait qu'utiliser seul des exemples génères ne suffirait pas pour obtenir un bon taux de détection sur les données réelles. Nous avons donc préférée utiliser notre temps restant a construire une meilleure base d'exemple en mixant données réelle et données générée, pour obtenir non seulement une meilleure variance, mais un \textit{dataset} plus proche de la réalité.
 \newpage
 \section{Bilan provisoire et perspectives}
 	\subsection{Conclusion} %Changer le nom ?
-	Ce semestre fut riche en travail et en résultat. Nous avons énormément appris sur le travail d'analyse de données
+	Ce semestre fut riche en travail et en résultat. Nous avons énormément appris sur le travail d'analyse de données, le nettoyage de \textit{dataset}, les reseaux d'apprentissage automatique, ainsi que des techniques d'analyse d'image. Le travail de mise en place de systeme d'apprentissage automatique est un travail long et delicat; d'autant plus que nous possedons un corpus de donnees reduit. Malgre tout nous, nous sommes optimiste sur le deroulement de ce projet. Le travail de ce premier semestre ne fut pas que lecture d'article academique: nous avons pu observe que les techniques traditionnelles d'analyse d'image ne fonctionne pas avec nos donnees, nous avons cree un corpus de donnees annote de plus de 50 000 images, et pose les bases pour l'implementation d'un reseau de convolution.
 	\subsection{Implémentation d'un réseau de convolution}
-	La prochaine étape est évidement l'implémentation d'un réseau de convolution, apprenant sur le dataset. La partie la plus chronophage, celle de préparer la base de données étant déjà accompli, cette tache ne prendra que peu de temps. 
+	La prochaine étape est évidement l'implémentation d'un réseau de convolution, apprenant sur le \textit{dataset}. La partie la plus chronophage, celle de préparer la base de données étant déjà accompli, cette tache ne prendra que peu de temps. 
 	\subsection{Choix de la direction de recherche}
+	Nous devons maintenant decider de la direction de nos recherches pour le Semestre 2. L'implementation d'un reseau de convolution, et l'analyse des resultats obtenus, nous permettre de faire une decision sur le choix des objets a analyser. Si le reseau donne une precision en deca de nos attentes, nous continuerons notre travail sur l'analyse d'objet metalliques. Si nous obtenons une precision acceptable alors nous pouvons alors etendre celui ci a l'etude d'autres objets archeologiques dont la definition en tant que structure dans une image est plus complexe, comme des tombes, des routes, etc. 
 
+	Nous desirons egalement pouvoir travailler avec d'autres types de releves, a utiliser en conjonction des releves magnetometrique, comme par exemple le LIDAR, ou le radar de sol. Cependant obtenir ces releves n'est pas une tache aise, d'autant plus qu'ils couvrent generalement des zones differentes de celles couvertes par la magnetometrie.
+
+	Ensuite, nous voudrions encore enrichir notre corpus de donnees : des avances recentes ont ete faite a ce sujet \cite{DatasetTranfo}, et il serait interessant de pouvoir les utiliser. Finalement, nous nous posons la question de rendre ce corpus publique, apres autorisation aupres des proprietaires, bien sur. Des corpus sur les objets archeologiques dans ce contexte sont virtuellement inexistant, et serais un ajout interressant. 
 \newpage
 \section{Annexes}
 
