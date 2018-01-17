@@ -1,6 +1,12 @@
 Data/
-Docs/Cadrage/*.bbl
-Docs/Cadrage/*.blg
+*.bbl
+*.blg
+*.aux
+*.bcf
+*.log
+*.run.xml
+*.tex.blg
+*.toc
 *.swo
 *.swp
 Scripts/PreparedData/
