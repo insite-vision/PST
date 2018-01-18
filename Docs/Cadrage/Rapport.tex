@@ -10,6 +10,7 @@
 \usepackage{float}
 \usepackage{subcaption}
 \usepackage{hyperref}
+\usepackage[margin=1.2in]{geometry}
 
 \graphicspath{ {images/}}
 \addbibresource{Biblio.bib}
@@ -26,10 +27,8 @@
 \renewcommand{\sectionmark}[1]{%
 	\markright{\thesection\ #1}}
 
-	%delete the current header
 \fancyhf{}
-
-\fancyhead[LE, RO]{\bfseries\thepage}
+%\fancyhead[LE, RO]{\bfseries}
 \fancyhead[LO]{\bfseries\textit\rightmark}
 %\fancyhead[RE]{\bfseries\textit}
 \fancyhead[RE]{WAT}
@@ -37,7 +36,8 @@
 \fancypagestyle{plain}{\fancyhead{}, %get rid of header on plain pages
 	\renewcommand{\headrulewidth}{0pt} % and the line
 }
-
+\fancyfoot[L]{2017 -- 2018}
+\fancyfoot[R]{Page \thepage}
 
 \begin{document}
 \begin{titlepage}
@@ -116,8 +116,7 @@
 	Nos releves nous proviennent tous du site archeologique de Marsal, en Moselle, et ont ete realise au cours d'une quinzaine d'annee, %TODO: CONTEXTUALISER%
 	. Cette region possede des marais salants, et on trouve des traces d'une exploitation industrielle tres importante aux alentours de l'age du Fer (VII\textsuperscript{eme}-I\textsuperscript{eme} siecle avant J.C). On trouve des traces de ces exploitations avec par exemple une quantite extrement eleve de briquetage (dechet de terre cuite, utilise pour la cuisson de la saumure); ce n'est pas moins de 4 millions de metres cube de briquetage accumule dans la region, soit presque deux fois le volume de la pyramide de Kheops. Le sel etait, et a longtemps ete une ressource strategique; car en plus de servir d'epice, le sel est utilise dans la conservation d'aliments, et les populations agricultrice, qui consome moins de viande doivent supplementer leur apport par du sel. La region a donc ete tres riche par le passe. Dans les fouilles, on trouve nombre de fours de grande taille, en forme de "U", qui servaient a la preparation du sel, et les corps trouves sur les sites de productions de sel sont mal nourris, ce qui semble indiquer que ce sont des esclaves, ou en tout cas des "employes" qui ne possedent pas les fours ni le sel qu'ils produisent. 
 
-
-
+	\newpage
 	\subsection{Détections d'objets}
 	Nous avons décidé de débuter nos recherches de détections de formes par des solutions simples, avec l'attente qu'elle nous donnent des résultats de bonne qualité. L'attrait de ces méthodes étaient principalement qu'elles ne requiert pas de quantité de données importante, et qu'elles étaient a notre porte d'un point de vue académique. Nous avons donc approche le problème de deux façons différentes:
 	\begin{itemize}
@@ -132,13 +131,13 @@
 		\caption{Exemple d'image bruitée}. 
 		\label{fig:FilterInput}
 	\end{figure}
-	\pagebreak
 	Nous avons pour cela commencé par appliquer les techniques classiques de réduction de bruit : 
 	\begin{itemize}
 		\item Flou gaussien
 		\item Filtres coupe-bande plus complexes (approche fréquentielle)
 		\item Dilatation/Érosion
 	\end{itemize}
+	\newpage
 	\paragraph{\textbf{Flou gaussien}}
 	La manière la plus classique d'atténuer le bruit d'une image est le flou gaussien. Cette technique consiste à remplacer chaque pixel par la moyenne des ses voisins, avec une distance paramètrable.
 	\begin{figure}[H]
@@ -148,7 +147,7 @@
 		\label{fig:FilterGaussian}
 	\end{figure}
 
-	\pagebreak
+	\newpage
 	\paragraph{\textbf{Approche fréquentielle}}
 	Ici, l'idée est d'appliquer le filtre sur directement sur la transformée de fourier, affin de pouvoir choisir précisément les fréquences que l'on souhaite conserver ou supprimer.
 	L'approche la plus concluante à été d'appliquer un passe-bande pour supprimer les hautes fréquences (qui contiennent le bruit), ainsi que les basses fréquences pour augmenter le contraste.
@@ -161,7 +160,7 @@
 	On voit sur la figure \ref{fig:FilterFFT} le traittement séquentiel de l'image (de gauche à droite, puis de haut en bas) : on calcule la FFT, on applique un masque (le coupe-bande), puis on applique la FFT inverse. \\
 	Cette approche peut donner des résultats intéressants, mais le problème est que la bande de fréquence à garder dépend des images. On perd donc de vue l'objectif initial, : l'automatisation.
 
-	\pagebreak
+	\newpage
 	\paragraph{\textbf{Dilatation/Érodation}}
 	La dilatation et l'érosion sont des traitements qui travaillent sur la morphologie de l'image.
 	La dilatation "dilate" les formes : elle augmente la superficie des structures.
@@ -193,11 +192,11 @@
 		\label{fig:FilterDilateErode}
 	\end{figure}
 
-	\pagebreak
+	\newpage
 	\paragraph{\textbf{Conclusion}}
 	Les techniques classiques de réduction de bruit dans une images semblent donner des résultats prometteurs : visuellement, l'image est plus lisible. Le résultat n'est cependant pas satisfaisant car, d'une part, le bruit reste présent, mais d'autre part -- et c'est le plus important -- le bruit n'est pas sufisemment effacé pour une détection de contours, comme nous allons le voir juste après.
 
-	\pagebreak
+	\newpage
 
 	\subsubsection{Algorithmes de détections de bords}
 	Nous avons débuté par l'utilisation de l'opérateur de Sobel\cite{SobelOp}. Cette technique produit des images en noir et blanc ou les bords ont une valeur de blanc élevé. Un bord est défini comme un endroit de l'image ou la magnitude de son gradient est élevé. Cette technique est tres courament utilise en \textit{Computer Vision} et il est deja implemente dans la librairie openCV en Python. Son fonctionnement est décrit en plus de détails ci-dessous: 
@@ -209,29 +208,30 @@
 					\[\nabla(G) = \sqrt{G_x^2 + G_y^2}\]
 	\paragraph{\textbf{Création d'une image des bords}}
 	Une fois cet opération réalisée, il nous suffit d'associer la valeur du gradient a une valeur de gris. Une grande magnitude du gradient, indiquant que le pixel orignal appartenait a un bord donnera un pixel blanc, tandis qu'une faible intensité donnera un pixel noir.
-	Sur des images "propres" on obtient ce genre de résultats: \\
-	\begin{figure}[]
+	Sur des images "propres" on obtient ce genre de résultats:
+	\begin{figure}[H]
 		\centering
-		\begin{subfigure}[b]{0.4\linewidth}
+		\begin{subfigure}[]{0.4\linewidth}
 			\includegraphics[width=\linewidth]{ValveOriginal.png}
 			\caption{Image originelle}
 		\end{subfigure}
-		\begin{subfigure}[b]{0.4\linewidth}
+		\begin{subfigure}[]{0.4\linewidth}
 			\includegraphics[width=\linewidth]{ValveSobel.png}
 			\caption{Image traite avec Sobel}
 		\end{subfigure}
 		\caption{Comparaison d'une image sans traitement avec celle traite avec Sobel, de Wikipedia \cite{WikiCannyOriginal}\cite{WikiSobel}}. 
 		\label{fig:SobelGood}
 	\end{figure}
-	On observe que les détails de l'image disparaissent, et que les bords, c'est a dire les endroits ou la magnitude du gradient de l'image sont important sont visible par des nuances de gris.\\
+	On observe que les détails de l'image disparaissent, et que les bords, c'est a dire les endroits ou la magnitude du gradient de l'image sont important sont visible par des nuances de gris.
+	\newpage
 	Lorsque l'on applique l'opérateur Sobel sur nos images, nous obtenons, dans les meilleurs des cas, ces résultats:
-	\begin{figure}[]
+	\begin{figure}[H]
 		\centering
-		\begin{subfigure}[b]{0.4\linewidth}
+		\begin{subfigure}[]{0.4\linewidth}
 			\includegraphics[width=\linewidth]{Sobel1b.png}
 			\caption{Image originelle}
 		\end{subfigure}
-		\begin{subfigure}[b]{0.4\linewidth}
+		\begin{subfigure}[]{0.4\linewidth}
 			\includegraphics[width=\linewidth]{Sobel1a.png}
 			\caption{Image traite avec Sobel}
 			
@@ -255,6 +255,8 @@
 			direction du gradient. \\
 			Si oui, c'est un bord et sa valeur est garde pour la prochaine étape, sinon, elle est mise a 0. On obtient une image binaire, avec que des bords
 
+		\newpage
+
 		\item \textbf{Seuil d'Hysterisis} \\
 			\indent On utilise deux seuils, $minVal$ et $maxVal$. Tout les bords ayant une intensité de gradient supérieur a $maxVal$ est forcement un
 			bord, ceux en dessous de $minVal$ sont forcement des non-bords, et sont donc abandonne. Les bords qui sont entre ces deux seuil sont classe
@@ -264,14 +266,13 @@
 	\end{enumerate}
 	Encore une fois cet algorithme était déjà disponible dans la librairie d'analyse de d'image PythonCV2, nous n'avons pas eu a l'implémenter, et nous avons bénéficié de quelques optimisations rendant l'exécution plus rapide.
 	Avec une image "propre", on obtient ce genre d'image:
-	\newpage
-	\begin{figure}[] %%NE PAS OUBLIER DE LINK L'AUTEUR : By Simpsons contributor, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=8904364
+	\begin{figure}[H] %%NE PAS OUBLIER DE LINK L'AUTEUR : By Simpsons contributor, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=8904364
 		\centering
-		\begin{subfigure}[b]{0.4\linewidth}%CORIGER LA POSITION DES FIGURES
+		\begin{subfigure}[]{0.4\linewidth}%CORIGER LA POSITION DES FIGURES
 			\includegraphics[width=\linewidth]{ValveOriginal.png}
 			\caption{Image originelle}
 		\end{subfigure}
-		\begin{subfigure}[b]{0.4\linewidth}
+		\begin{subfigure}[]{0.4\linewidth}
 			\includegraphics[width=\linewidth]{ValveCanny.png}
 			\caption{Image traite avec Canny}
 		\end{subfigure}
@@ -279,14 +280,14 @@
 		\label{fig:cannyGood}
 	\end{figure}
 	On observe que les bords sont bien plus défini, et propre par rapport a ceux obtenu avec l'opérateur Sobel. Mieux, les bords "majeurs", sont préservé, alors que les bords "mineurs" disparaissent. Cela est du aux deux dernières étapes de l'algorithme de Canny.
-			Lorsque l'on applique Canny a nos images, nous obtenons ceci:
-	\begin{figure}[!h]%CORRIGER LA POSITION DES FIGURES
+	Lorsque l'on applique Canny a nos images, nous obtenons ceci:
+	\begin{figure}[H]
 		\centering
-		\begin{subfigure}[b]{0.4\linewidth}
+		\begin{subfigure}[]{0.4\linewidth}
 			\includegraphics[width=\linewidth]{Canny1a.png}
 			\caption{Image originelle}
 		\end{subfigure}
-		\begin{subfigure}[b]{0.4\linewidth}
+		\begin{subfigure}[]{0.4\linewidth}
 			\includegraphics[width=\linewidth]{Canny1b.png}
 			\caption{Image traite avec Canny}
 		\end{subfigure}
@@ -295,23 +296,19 @@
 
 	Même si il y a une amélioration certaine par rapport a Sobel, l'algorithme ne parvient toujours pas a trouver les contours des objets d'intérêt, encore une fois a cause du a la grande quantité de bruit que l'on trouve dans l'image. Cependant  on observe une densité de points plus élevé aux niveau des endroits d'intérêts, comme ici, et une densité faible dans les zones ou on ne trouve ni objets ni bruit.
 	%Rajouter comparaison Canny Sobel sur Amphi.png
-	\begin{figure}[]%CORRIGER LA POSTION DES FIGURES
+	\begin{figure}[H]
 		\centering
-		\begin{subfigure}[b]{0.4\linewidth}
+		\begin{subfigure}[]{0.4\linewidth}
 			\includegraphics[width=\linewidth]{CANNY_ExempleDetailsA.png}
 			\caption{Image originelle}
 		\end{subfigure}
-		\begin{subfigure}[b]{0.4\linewidth}
+		\begin{subfigure}[]{0.4\linewidth}
 			\includegraphics[width=\linewidth]{CANNY_ExempleDetailsB.png}
 			\caption{Image traite avec Canny}
 		\end{subfigure}
 		\caption{Comparaison entre de détails entre une image sans traitement avec peu de bruit, et l'image traite avec Canny. Même si les bords ne sont pas détecté correctement, les lieux d'intérêt de l'image (la forme circulaire) ont très visiblement une haute densité de points.}
 		\label{fig:CannyDetails}
 	\end{figure}
-
-
-
-
 
 	\subsubsection{Problèmes rencontres}
 	De toute évidence, nous avions atteint un obstacle: le bruit. Celui ci était présent sur toutes les images, au point d'empêcher toute tentative d'analyse classique de signal. La magnétométrie est très sensible aux objets métalliques, et dans la région ou ont été fait les relevés, de nombreux objets métalliques contemporains sont présent dans le terrain, notamment a cause des combats de la 2\textsuperscript{ème} guerre mondiale, mais aussi a cause des labours, et du déchets métallique produit par l'occupation humaines de ces terrains.\\
@@ -328,11 +325,10 @@
 
 	\subsubsection{Caractérisation}
 	Les dipôles proviennent des objets métalliques contemporains, et se caractérisent par un pôle positif très fort au niveau de l'objet, suivi d'un halo circulaire négatif, dont le diamètre est approximativement 2 fois celui de l'objet. On peut voir sur la figure \ref{fig:DipoleExample} que les anomalies se ressemblent beaucoup, et son très présentes sur virtuellement toutes les cartes. De plus elles sont assez grandes pour être immédiatement reconnu sur nos relevés, ce qui simplifie la tache de labelisation des exemples a apprendre. 
-
-Un aspect interessant de ce probleme est, bien que si les dipoles produit par des objets metalliques contemporains sont generalement considere comme du bruit, ce n'est parce qu'ils \textit{ne font pas partie de la periode recherche}. En d'autre terme, un objet metallique recent est un objet archeologique comme les autres: il provient d'une certaine periode historique, a une ou plusieurs techniques de fabrication qui lui sont propre, provient d'un certains lieu... Dans certaines circonstance de recherche, en particulier lorsque le site et les objets est date de la protohistoire, des objets datant de l'occupation romaine sont vu comme du bruit. C'est le cas avec le site de marsal, ou une occupation romaine a eu pour consequence des rejets de dechets datant de l'ere romaine, comme des tuiles, qui provoque du "bruit" sur nos cartes. En somme, il ne faut pas voir notre approche comme une recherche de "bruit", mais simplement comme un changement d'objet d'interet. Nous en choisissons un distinct, commun, et donc plus facile a etudier.
+	Un aspect interessant de ce probleme est, bien que si les dipoles produit par des objets metalliques contemporains sont generalement considere comme du bruit, ce n'est parce qu'ils \textit{ne font pas partie de la periode recherche}. En d'autre terme, un objet metallique recent est un objet archeologique comme les autres: il provient d'une certaine periode historique, a une ou plusieurs techniques de fabrication qui lui sont propre, provient d'un certains lieu... Dans certaines circonstance de recherche, en particulier lorsque le site et les objets est date de la protohistoire, des objets datant de l'occupation romaine sont vu comme du bruit. C'est le cas avec le site de marsal, ou une occupation romaine a eu pour consequence des rejets de dechets datant de l'ere romaine, comme des tuiles, qui provoque du "bruit" sur nos cartes. En somme, il ne faut pas voir notre approche comme une recherche de "bruit", mais simplement comme un changement d'objet d'interet. Nous en choisissons un distinct, commun, et donc plus facile a etudier.
 	%RAJOUTER IMAGE DIPOLE REEL
 	%RAJOUTER PLOT3D DIPOLE
-	\begin{figure}[]%CORRIGER LA POSTION DES FIGURES
+	\begin{figure}[H]
 		\centering
 		\begin{subfigure}[b]{0.3\linewidth}
 			\includegraphics[width=\linewidth]{DipoleExemple1.png}
