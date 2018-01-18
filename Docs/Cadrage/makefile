@@ -8,6 +8,4 @@ read:
 	evince ${filename}.pdf &
 
 clean: 
-	rm -f ${filename}.{ps,log,aux,out,dvi,bbl,blg}
-
-
+	rm -f ${filename}.{ps,run.xml,toc,log,aux,out,dvi,bbl,blg}
