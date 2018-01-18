@@ -6,7 +6,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage[backend=biber]{biblatex}
+\usepackage[backend=biber, sorting=none]{biblatex}
 \usepackage{float}
 \usepackage{subcaption}
 
@@ -202,7 +202,7 @@
 	\paragraph{\textbf{Création d'une image des bords}}
 	Une fois cet opération réalisée, il nous suffit d'associer la valeur du gradient a une valeur de gris. Une grande magnitude du gradient, indiquant que le pixel orignal appartenait a un bord donnera un pixel blanc, tandis qu'une faible intensité donnera un pixel noir.
 	Sur des images "propres" on obtient ce genre de résultats: \\
-	\begin{figure}[]
+	\begin{figure}[h!]
 		\centering
 		\begin{subfigure}[b]{0.4\linewidth}
 			\includegraphics[width=\linewidth]{ValveOriginal.png}
@@ -215,9 +215,10 @@
 		\caption{Comparaison d'une image sans traitement avec celle traite avec Sobel, de Wikipedia \cite{WikiCannyOriginal}\cite{WikiSobel}}. 
 		\label{fig:SobelGood}
 	\end{figure}
+	\newline
 	On observe que les détails de l'image disparaissent, et que les bords, c'est a dire les endroits ou la magnitude du gradient de l'image sont important sont visible par des nuances de gris.\\
 	Lorsque l'on applique l'opérateur Sobel sur nos images, nous obtenons, dans les meilleurs des cas, ces résultats:
-	\begin{figure}[]
+	begin{figure}[h!]
 		\centering
 		\begin{subfigure}[b]{0.4\linewidth}
 			\includegraphics[width=\linewidth]{Sobel1b.png}
@@ -257,7 +258,7 @@
 	Encore une fois cet algorithme était déjà disponible dans la librairie d'analyse de d'image PythonCV2, nous n'avons pas eu a l'implémenter, et nous avons bénéficié de quelques optimisations rendant l'exécution plus rapide.
 	Avec une image "propre", on obtient ce genre d'image:
 	\newpage
-	\begin{figure}[] %%NE PAS OUBLIER DE LINK L'AUTEUR : By Simpsons contributor, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=8904364
+	\begin{figure}[h] %%NE PAS OUBLIER DE LINK L'AUTEUR : By Simpsons contributor, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=8904364
 		\centering
 		\begin{subfigure}[b]{0.4\linewidth}%CORIGER LA POSITION DES FIGURES
 			\includegraphics[width=\linewidth]{ValveOriginal.png}
@@ -271,8 +272,8 @@
 		\label{fig:cannyGood}
 	\end{figure}
 	On observe que les bords sont bien plus défini, et propre par rapport a ceux obtenu avec l'opérateur Sobel. Mieux, les bords "majeurs", sont préservé, alors que les bords "mineurs" disparaissent. Cela est du aux deux dernières étapes de l'algorithme de Canny.
-			Lorsque l'on applique Canny a nos images, nous obtenons ceci:
-	\begin{figure}[!h]%CORRIGER LA POSITION DES FIGURES
+			Lorsque l'on applique Canny a nos images, nous obtenons ceci: \\
+	\begin{figure}[h]%CORRIGER LA POSITION DES FIGURES
 		\centering
 		\begin{subfigure}[b]{0.4\linewidth}
 			\includegraphics[width=\linewidth]{Canny1a.png}
@@ -287,7 +288,7 @@
 
 	Même si il y a une amélioration certaine par rapport a Sobel, l'algorithme ne parvient toujours pas a trouver les contours des objets d'intérêt, encore une fois a cause du a la grande quantité de bruit que l'on trouve dans l'image. Cependant  on observe une densité de points plus élevé aux niveau des endroits d'intérêts, comme ici, et une densité faible dans les zones ou on ne trouve ni objets ni bruit.
 	%Rajouter comparaison Canny Sobel sur Amphi.png
-	\begin{figure}[]%CORRIGER LA POSTION DES FIGURES
+	\begin{figure}[h]%CORRIGER LA POSTION DES FIGURES
 		\centering
 		\begin{subfigure}[b]{0.4\linewidth}
 			\includegraphics[width=\linewidth]{CANNY_ExempleDetailsA.png}
@@ -301,7 +302,7 @@
 		\label{fig:CannyDetails}
 	\end{figure}
 
-
+	
 
 
 
@@ -326,13 +327,13 @@ Un aspect interessant de ce probleme est, bien que si les dipoles produit par de
 	%RAJOUTER PLOT3D DIPOLE
 	\begin{figure}[]%CORRIGER LA POSTION DES FIGURES
 		\centering
-		\begin{subfigure}[b]{0.3\linewidth}
+		\begin{subfigure}[]{0.3\linewidth}
 			\includegraphics[width=\linewidth]{DipoleExemple1.png}
 		\end{subfigure}
-		\begin{subfigure}[b]{0.3\linewidth}
+		\begin{subfigure}[]{0.3\linewidth}
 			\includegraphics[width=\linewidth]{DipoleExemple2.png}
 		\end{subfigure}
-		\begin{subfigure}[b]{0.3\linewidth}
+		\begin{subfigure}[]{0.3\linewidth}
 			\includegraphics[width=\linewidth]{DipoleExemple3.png}
 		\end{subfigure}
 
@@ -367,7 +368,7 @@ Un aspect interessant de ce probleme est, bien que si les dipoles produit par de
 	\indent$\phi$ angle de phase a l'origine\\
 	\indent$i,j$ décalage horizontal et vertical, respectivement, par rapport a l'origine
 
-	Avec la génération aléatoire des paramètres de cette fonction, nous pouvons obtenir une grande variété d'exemple qui ressemble aux dipôles retrouves dans nos cartes. 
+	Avec la génération aléatoire des paramètres de cette fonction, nous pouvons obtenir une grande variété d'exemple qui ressemble aux dipôles retrouves dans nos cartes. \\
 	%TODO: Rajouter exemple 3D Dipole Reel vs Dipole Genere
 	%TODO: Source image : Document PZP (Lieu)
 	\textbf{Traitement des images}:\\
