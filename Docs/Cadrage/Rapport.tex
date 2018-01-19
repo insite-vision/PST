@@ -10,6 +10,7 @@
 \usepackage{float}
 \usepackage{subcaption}
 \usepackage{hyperref}
+\usepackage{spverbatim}
 \usepackage[margin=1.2in]{geometry}
 
 \graphicspath{ {images/}}
@@ -82,10 +83,10 @@
 	
 	\newpage
 \section{Présentation}
-	\subsection{Description}
+	\subsection{Description}%Enoncer clairement la problematique et mieux decrire le projet
 		InSite analyse et détecte des objets archéologiques dans des relevés géomagnétiques, en utilisant des techniques novatrices dans le domaine de
 		la Computer Vision, ainsi que de l'apprentissage automatique.
-	\subsection{Objectifs}
+	\subsection{Objectifs}%Il faut hierarchiser les objectifs et les replacer dans le contexte + SMART
 	Nous cherchons a:
 	\begin{itemize}
 		\item Analyser automatiquement des relevés géomagnétiques 
@@ -98,12 +99,13 @@
 \section{Cadrage}
 	\subsection{Budget}
 	Étant d'abord et surtout un projet de recherche d'informatique, InSite ne requiert pas de budget. Nous avons pu obtenir les relevés magnéto-métrique sans cout, et les ressources nécessaires pour mener a bien ce projet sont déjà a notre disposition. 
-	\subsection{Dates clefs}
 	\subsection{Organisation}
 	InSite se compose de 2 étudiants, Fabien GOGLIO et Martin OLIVIER. Par cette taille réduite, l'organisation est simplifie. Les rôles sont distribue selon l'intérêt de pour la tache, et selon sa compétence a mener cette tache a bien. Les recherches sur les techniques a utiliser, et le développement d'outil et de code sont faites de manières indépendantes, même si une communication constante est faite. 
 	\subsubsection{Démarche}
-	Comme inSite est un projet non pas de développement, mais de recherche, nous utilisons une démarche différentes de celle trouve habituellement dans les PST: nous passons une grande partie de notre temps a faire des recherches, et nous n'écrivons que des petits scripts, qui répondent a une tache particulière.   
+	Comme inSite est un projet non pas de développement, mais de recherche, nous utilisons une démarche différentes de celle trouve habituellement dans les PST: nous passons une grande partie de notre temps a faire des recherches, et nous n'écrivons que des petits scripts, qui répondent a une tache particulière. Par exemple, l'application de l'algorithme de Canny, pour la detection de bords sur les releves,
+	ou le decoupage des cartes en carres pour l'analyse. Quelques exemples sont disponibles en Annexe %Rajouter canny.py et CutImage.py en annexe
 	\subsection{Planning}
+	\subsubsection{Dates Clefs}
 	\subsection{Langages et technologies utilise}
 	Pour simplifier le développement, nous utilisons Python2 avec les librairies numpy, pyplot, cv2, qui possèdent de nombreuse fonctions mathématique et d'analyse d'image déjà implémentées.
 	\newpage
@@ -111,10 +113,12 @@
 \section{Démarche Initiale}
 	
 	\subsection{Relevés géomagnétiques et origine de notre dataset}
-	Les relevés géomagnétiques sont utilise en archéologie depuis une vingtaine d'années. Elle permettent d'obtenir une idée de la répartition d'objets et structures archéologiques, et est surtout une approche non destructive: elle ne modifie pas les objets qu'elle observe. Un tel relevé s'obtient en mesurant le magnétisme du sol, grâce a un gradiomètre magnétique, qui mesure la différence entre deux mesure du champs magnétiques faites par deux capteur. On construit ensuite des cartes en noir et blanc, représentant les variations du champs magnétique par une variation de couleur. Une valeur positive forte sera blanche, tandis qu'une valeur négative forte sera noire. Ces relevés permettent de détecter des structures et objet enfouis jusqu'à quelques mètres de profondeur. En effet lorsque l'on construit, ou lorsque l'on fait cuire a l'aide de fours, on modifie les valeurs de champs magnétiques du terrain, et ces variations peuvent être observe. Ces relevés, mesurant le magnétisées du sol sont également très sensible aux objets métalliques, et le sont d'autant plus que ces objets sont proche du capteur, ce qui peux poser problèmes dans les zones ou une activité anthropologique récente a une lieu, car l'homme moderne rejette beaucoup de déchet métalliques. Ces objets métalliques contemporains sont des dipôles et provoquent sur les relevés des anomalies très caractéristiques. Nous discuterons de ces anomalies plus bas.
+	Les relevés géomagnétiques sont utilise en archéologie depuis une vingtaine d'années. Ils permettent notament d'obtenir une idée de la répartition d'objets et structures archéologiques. Un tel relevé s'obtient en mesurant le magnétisme du sol, grâce a un gradiomètre magnétique, qui mesure la différence entre deux mesures du champs magnétiques faites par deux capteurs.
+	%Schema + Explication du principe
+	On construit ensuite des cartes en noir et blanc, représentant les variations du champs magnétique par une variation de niveau de gris. Une valeur positive forte sera blanche, tandis qu'une valeur négative forte sera noire. Ces relevés permettent de détecter des structures et objet enfouis jusqu'à quelques mètres de profondeur. En effet lorsque l'on construit, ou lorsque l'on fait cuire a l'aide de fours, on modifie les valeurs de champs magnétiques du terrain, et ces variations peuvent être observe. Ces relevés, mesurant le magnétisées du sol sont également très sensible aux objets métalliques, et le sont d'autant plus que ces objets sont proche du capteur, ce qui peux poser problèmes dans les zones ou une activité anthropologique récente a une lieu, car l'homme moderne rejette beaucoup de déchet métalliques. Ces objets métalliques contemporains sont des dipôles et provoquent sur les relevés des anomalies très caractéristiques. Nous discuterons de ces anomalies plus bas.
 
 	Nos relevés nous proviennent tous du site archéologique de Marsal, en Moselle, et ont été réalisés au cours d'une quinzaine d'année, lors de la campagne de fouille de Laurent OLIVIER.%TODO: CONTEXTUALISER%
-	. Cette région possède des marais salants, et on trouve des traces d'une exploitation industrielle très importante aux alentours de l'age du Fer (VII\textsuperscript{ème}-I\textsuperscript{ème} siècle avant J.C). On trouve des traces de ces exploitations avec par exemple une quantité extrêmement élevée de briquetage (déchets de terre cuite, utilise pour la cuisson de la saumure); ce n'est pas moins de 4 millions de mètres cube de briquetage accumule dans la région, soit presque deux fois le volume de la pyramide de Shops. Le sel était, et a longtemps été une ressource stratégique; car en plus de servir d'épice, le sel est utilise dans la conservation d'aliments, et les populations agricultrice, qui consomme moins de viande doivent supplémenter leur apport par du sel. La région a donc été très riche par le passe. Dans les fouilles, on trouve nombre de fours de grande taille, en forme de "U", qui servaient a la préparation du sel, et les corps trouves sur les sites de productions de sel sont mal nourris, ce qui semble indiquer que ce sont des esclaves, ou en tout cas des "employés" qui ne possèdent pas les fours ni le sel qu'ils produisent. 
+	. Cette région possède des marais salants, et on trouve des traces d'une exploitation industrielle très importante aux alentours de l'age du Fer (VII\textsuperscript{ème}-I\textsuperscript{ème} siècle avant J.C). On trouve des traces de ces exploitations avec par exemple une quantité extrêmement élevée de briquetage (déchets de terre cuite, utilise pour la cuisson de la saumure); ce n'est pas moins de 4 millions de mètres cube de briquetage accumule dans la région, soit presque deux fois le volume de la pyramide de Kheops. Le sel était, et a longtemps été une ressource stratégique; car en plus de servir d'épice, le sel est utilise dans la conservation d'aliments, et les populations agricultrice, qui consomme moins de viande doivent supplémenter leur apport par du sel. La région a donc été très riche par le passe. Dans les fouilles, on trouve nombre de fours de grande taille, en forme de "U", qui servaient a la préparation du sel, et les corps trouves sur les sites de productions de sel sont mal nourris, ce qui semble indiquer que ce sont des esclaves, ou en tout cas des "employés" qui ne possèdent pas les fours ni le sel qu'ils produisent. %Donner source plus exemples de releves 
 
 	\newpage
 	\subsection{Détections d'objets}
@@ -242,7 +246,7 @@
 
 	Sur nos images, les résultats obtenus ne sont pas très pertinent. Le bruit est trop prévalent, et les bords des objets que nous cherchons a détecter sont trop faibles pour que l'opérateur de Sobel puisse donne des résultats intéressant.
 
-	Nous avons ensuite décidé d'utiliser un autre algorithme, celui de Canny \cite{CannyOp}. L'algorithme de Canny reprend les matrices de Sobel, et applique quelques opérations supplémentaire pour obtenir des bords plus mieux défini. Les détails de l'algorithme sont décrit ci-dessous
+	Nous avons ensuite décidé d'utiliser un autre algorithme, celui de Canny \cite{CannyOp}. L'algorithme de Canny reprend les matrices de Sobel, et applique quelques opérations supplémentaire pour obtenir des bords mieux défini. Les détails de l'algorithme sont décrit ci-dessous
 	\begin{enumerate}
 		\item \textbf{Réduction du bruit:}\\
 			\indent On applique un filtre Gaussien 5x5 pour réduire le bruit présent dans l'image
@@ -310,18 +314,13 @@
 		\label{fig:CannyDetails}
 	\end{figure}
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 45b3789ef90085c45e330294a3ae1f27056bc70a
 	\subsubsection{Problèmes rencontres}
 	De toute évidence, nous avions atteint un obstacle: le bruit. Celui ci était présent sur toutes les images, au point d'empêcher toute tentative d'analyse classique de signal. La magnétométrie est très sensible aux objets métalliques, et dans la région ou ont été fait les relevés, de nombreux objets métalliques contemporains sont présent dans le terrain, notamment a cause des combats de la 2\textsuperscript{ème} guerre mondiale, mais aussi a cause des labours, et du déchets métallique produit par l'occupation humaines de ces terrains.\\
 	Une analyse classique ne suffisait donc pas, et le développement de méthodes de filtrage et de détection de bords étant capable de traiter des images aussi bruite est hors de notre porte. Notre attention devait donc se porter sur la résolution d'un problème, annexe a celui qui nous intéressait, mais dont les techniques développé par sa résolution pouvait nous aider dans notre objectifs principal.
 
 \newpage
 \section{Développement d'une nouvelle méthodologie}
-	\subsection{Détections d'objet métallique par réseaux neuronaux}
+	\subsection{Détection d'objets métalliques par réseaux neuronaux}
 	Comme dit plus haut, les techniques classiques utilise dans l'analyse d'image sont inapplicables dans notre cas, du notamment au haut niveau de bruit présent dans les images a traites. Cependant, il est évidents que ce bruit n'est pas identique aux objets que nous cherchons, car sinon, les archéologues ne pourrait pas analyser ces images. Pour mieux diriger nos recherches nous avons choisi de détecter un type particulier de signaux, ceux provenant d'objet métalliques. Les réseaux de convolution sont très adapte a cette taches; car ils filtrent l'image et développent eux même les règles qui définissent l'objet ainsi que leur filtres. Ils permettent de détecter des motifs dans des parties de l'image, et non plus sur des pixels individuels, comme était le cas avec le filtrage ou la détection de bords. De plus, nous construisons un réseau n'apprenant a détecter qu'une seule classe d'objet, ce qui rendra l'apprentissage plus rapide. Si nous réussissons a détecter ces objets métalliques, nous pouvons alors:
 	\begin{enumerate}
 		\item "Nettoyer" les cartes de ces objets, qui ont tendance a rendre difficile la lecture, en appliquant un flou gaussien par exemple
@@ -330,14 +329,8 @@
 
 	\subsubsection{Caractérisation}
 	Les dipôles proviennent des objets métalliques contemporains, et se caractérisent par un pôle positif très fort au niveau de l'objet, suivi d'un halo circulaire négatif, dont le diamètre est approximativement 2 fois celui de l'objet. On peut voir sur la figure \ref{fig:DipoleExample} que les anomalies se ressemblent beaucoup, et son très présentes sur virtuellement toutes les cartes. De plus elles sont assez grandes pour être immédiatement reconnu sur nos relevés, ce qui simplifie la tache d'annotation des exemples a apprendre. 
-<<<<<<< HEAD
 
-Un aspect intéressant de ce problème est, bien que si les dipôles produit par des objets métalliques contemporains sont généralement considère comme du bruit, ce n'est parce qu'ils \textit{ne font pas partie de la période recherche}. En d'autre terme, un objet métallique récent est un objet archéologique comme les autres: il provient d'une certaine période historique, a une ou plusieurs techniques de fabrication qui lui sont propre, provient d'un certains lieu... Dans certaines circonstance de recherche, en particulier lorsque le site et les objets est date de la protohistoire, des objets datant de l'occupation romaine sont vu comme du bruit. C'est le cas avec le site de marial, ou une occupation romaine a eu pour conséquence des rejets de déchets datant de l'ère romaine, comme des tuiles, qui provoque du "bruit" sur nos cartes. En somme, il ne faut pas voir notre approche comme une recherche de "bruit", mais simplement comme un changement d'objet d'intérêt. Nous en choisissons un distinct, commun, et donc plus facile a étudier.
-	Les dipôles proviennent des objets métalliques contemporains, et se caractérisent par un pôle positif très fort au niveau de l'objet, suivi d'un halo circulaire négatif, dont le diamètre est approximativement 2 fois celui de l'objet. On peut voir sur la figure \ref{fig:DipoleExample} que les anomalies se ressemblent beaucoup, et son très présentes sur virtuellement toutes les cartes. De plus elles sont assez grandes pour être immédiatement reconnu sur nos relevés, ce qui simplifie la tache de labelisation des exemples a apprendre. 
-	Un aspect interessant de ce probleme est, bien que si les dipoles produit par des objets metalliques contemporains sont generalement considere comme du bruit, ce n'est parce qu'ils \textit{ne font pas partie de la periode recherche}. En d'autre terme, un objet metallique recent est un objet archeologique comme les autres: il provient d'une certaine periode historique, a une ou plusieurs techniques de fabrication qui lui sont propre, provient d'un certains lieu... Dans certaines circonstance de recherche, en particulier lorsque le site et les objets est date de la protohistoire, des objets datant de l'occupation romaine sont vu comme du bruit. C'est le cas avec le site de marsal, ou une occupation romaine a eu pour consequence des rejets de dechets datant de l'ere romaine, comme des tuiles, qui provoque du "bruit" sur nos cartes. En somme, il ne faut pas voir notre approche comme une recherche de "bruit", mais simplement comme un changement d'objet d'interet. Nous en choisissons un distinct, commun, et donc plus facile a etudier.
-=======
-	Un aspect intéressant de ce problème est, bien que si les dipôles produit par des objets métalliques contemporains sont généralement considère comme du bruit, ce n'est parce qu'ils \textit{ne font pas partie de la période recherche}. En d'autre terme, un objet métallique récent est un objet archéologique comme les autres: il provient d'une certaine période historique, a une ou plusieurs techniques de fabrication qui lui sont propre, provient d'un certains lieu... Dans certaines circonstance de recherche, en particulier lorsque le site et les objets est date de la protohistoire, des objets datant de l'occupation romaine sont vu comme du bruit. C'est le cas avec le site de marial, ou une occupation romaine a eu pour conséquence des rejets de déchets datant de l'ère romaine, comme des tuiles, qui provoque du "bruit" sur nos cartes. En somme, il ne faut pas voir notre approche comme une recherche de "bruit", mais simplement comme un changement d'objet d'intérêt. Nous en choisissons un distinct, commun, et donc plus facile a étudier.
->>>>>>> 45b3789ef90085c45e330294a3ae1f27056bc70a
+Un aspect intéressant de ce problème est, bien que si les dipôles produit par des objets métalliques contemporains sont généralement considère comme du bruit, ce n'est parce qu'ils \textit{ne font pas partie de la période recherche}. En d'autre terme, un objet métallique récent est un objet archéologique comme les autres: il provient d'une certaine période historique, a une ou plusieurs techniques de fabrication qui lui sont propre, provient d'un certains lieu... Dans certaines circonstance de recherche, en particulier lorsque le site et les objets est date de la protohistoire, des objets datant de l'occupation romaine sont vu comme du bruit. C'est le cas avec le site de Marsal, ou une occupation romaine a eu pour conséquence des rejets de déchets datant de l'ère romaine, comme des tuiles, qui provoque du "bruit" sur nos cartes. En somme, il ne faut pas voir notre approche comme une recherche de "bruit", mais simplement comme un changement d'objet d'intérêt. Nous en choisissons un distinct, commun, et donc plus facile a étudier.
 	%RAJOUTER IMAGE DIPOLE REEL
 	%RAJOUTER PLOT3D DIPOLE
 	\begin{figure}[H]
@@ -387,20 +380,41 @@ Un aspect intéressant de ce problème est, bien que si les dipôles produit par
 	Avec la génération aléatoire des paramètres de cette fonction, nous pouvons obtenir une grande variété d'exemple qui ressemble aux dipôles retrouves dans nos cartes. 
 	%TODO: Rajouter exemple 3D Dipole Reel vs Dipole Genere
 	%TODO: Source image : Document PZP (Lieu)
-	\textbf{Traitement des images}:\\
-	\indent Afin d'obtenir une meilleure qualité d'exemples nous avons utilise ceux provenant de nos données originelle. Nous avons d'abord découpe chacune des images en carre de taille 96*96 pixels; en décalant le carre de 48 pixels verticalement et horizontalement a chaque fois, nous pouvons obtenir encore plus d'exemples. Au final, nous avons pu obtenir plus de 51000 carres, grâce au fait que les images était très grande (souvent plus de 2000*2000 pixels). Nous avons ensuite, a la main, trouve tous les carres contenant un dipôles, ce qui nous donne 413 images de dipôles. Ces images, provenant du monde réelle sont très variée, que ce soit par leur taille, leur position dans l'image ou encore leur nombre.//
+	\textbf{Traitement des images}:\\%Rajouter Schema explicatif
+	\indent Afin d'obtenir une meilleure qualité d'exemples nous avons utilise ceux provenant de nos données originelle. Nous avons d'abord découpe chacune des images en carre de taille 96*96 pixels; en décalant le carre de 48 pixels verticalement et horizontalement a chaque fois, nous pouvons obtenir encore plus d'exemples. En decallant la fenetre qui obtient le carre de 48 pixels, on obtient un egalement un meilleur recouvrement des pixels.
+
+	
+\begin{figure}[H]
+		\centering
+		\begin{subfigure}[b]{0.3\linewidth}
+		\includegraphics[width=\linewidth]{ExempleCarre.png}
+		\caption{Representation du nombre de fois ou une zone a ete recouverte, ici avec un decallage de la taille du carre. Chaque zone est n'est couverte que par un seul carre}. 
+		\label{fig:ExempleCarre}
+\end{figure}
+
+Les releves dont nous disposons n'ont pas tous une forme rectangulaire. En effet il s'agit de plusieurs zones rectangulaire ou des releves ont ete fait, avec des zones blanches ou il n'y pas de releves. Ces zones sans releves nous sont inutile. Pour ne pas avoir de carre sans releves, nous avons colore les zones blanches en vert (voir la figure \cite{ReleveColore} pour un exemple). Lors du decoupage nous verifions si notre image contient du vert (Notre vert est particulier car il contient un peu de rouge. Il s'agissait initialement d'une erreur). Si le carre contient du vert, cela veut dire qu'une partie, ou la totalite, du carre est une zone sans releves.
+
+\begin{figure}[H]
+		\centering
+		\includegraphics[width=6cm]{ExemplePretraitement.jpg}
+		\caption{Pretraitement d'une carte avec remplacement des zones sans releves blanche par du vert}. 
+		\label{fig:ReleveColore}
+	\end{figure}
+
+Au final, nous avons pu obtenir plus de 51000 carres, grâce au fait que les images était très grande (souvent plus de 2000*2000 pixels). Nous avons ensuite, a la main, trouve tous les carres contenant un dipôles, ce qui nous donne 413 images de dipôles. Ces images, provenant du monde réelle sont très variée, que ce soit par leur taille, leur position dans l'image ou encore leur nombre.
+
 	Cependant, 400 images n'est toujours pas suffisant pour entrainer un réseau. Pour enrichir notre datasse nous avons décidé d'appliquer quelques transformations sur chacune des images. A l'heure ou nous écrivons ces lignes, nous avons implémenté les transformations suivantes :
 	\begin{enumerate}
-		\item Rotation de l'image sur l'axe x 
-		\item Rotation de l'image sur l'axe y
+		\item Rotation de l'image sur l'axe x %Schema pour chacun de ces transfo
+		\item Rotation de l'image sur l'axe y 
 		\item Ajout de bruit
 	\end{enumerate}
 	
 	\textbf{Implémentation Réseau Neuronal}\\
 	\indent Nous avons implémenté un réseau neuronal classique s'entrainant sur des exemples générés. Le réseau reprends l'architecture de l'exemple de TensorFlow pour la classification de chiffres manuscrit avec une modification du nombre d'entrée pour s'adapter a la taille des exemples générés. Lors de l'entrainement, on a pu observer une très rapide maximisation du taux de détection, arrivant a un taux de réussite de 100\% sur les exemples de test en 4 époques. Nous avons ensuite tente d'appliquer ce réseau sur une carte, dans l'espoir de créer une \textit{heatmap} d'activation du réseau. Malheureusement, ce réseau possédait un taux d'erreur très élevé sur les exemples réels. Nous ne possédions pas le temps d'implémenter un réseau neuronal de convolution, et les résultats obtenu avec le réseau neuronal "classique" nous indiquait qu'utiliser seul des exemples génères ne suffirait pas pour obtenir un bon taux de détection sur les données réelles. Nous avons donc préférée utiliser notre temps restant a construire une meilleure base d'exemple en mixant données réelle et données générée, pour obtenir non seulement une meilleure variance, mais un \textit{dataset} plus proche de la réalité.
 \newpage
-\section{Bilan provisoire et perspectives}
-	\subsection{Conclusion} %Changer le nom ?
+\section{Conclusion}
+	\subsection{Bilan Provisoire} %Changer le nom ?
 	Ce semestre fut riche en travail et en résultat. Nous avons énormément appris sur le travail d'analyse de données, le nettoyage de \textit{dataset}, les réseaux d'apprentissage automatique, ainsi que des techniques d'analyse d'image. Le travail de mise en place de système d'apprentissage automatique est un travail long et délicat; d'autant plus que nous possédons un corpus de données réduit. Malgré tout nous, nous sommes optimiste sur le déroulement de ce projet. Le travail de ce premier semestre ne fut pas que lecture d'article académique: nous avons pu observe que les techniques traditionnelles d'analyse d'image ne fonctionne pas avec nos données, nous avons crée un corpus de données annote de plus de 50 000 images, et pose les bases pour l'implémentation d'un réseau de convolution.
 	\subsection{Implémentation d'un réseau de convolution}
 	La prochaine étape est évidement l'implémentation d'un réseau de convolution, apprenant sur le \textit{dataset}. La partie la plus chronophage, celle de préparer la base de données étant déjà accompli, cette tache ne prendra que peu de temps. 
@@ -409,9 +423,115 @@ Un aspect intéressant de ce problème est, bien que si les dipôles produit par
 
 	Nous désirons également pouvoir travailler avec d'autres types de relevés, a utiliser en conjonction avec nos cartes magnéto-métrique, comme par exemple le LIDAR, ou le radar de sol. Cependant obtenir ces relevés n'est pas une tache aise, d'autant plus qu'ils couvrent généralement des zones différentes de celles couvertes par la magnétométrie.
 
-	Ensuite, nous voudrions encore enrichir notre corpus de données : des avances récentes ont été faite a ce sujet \cite{DatasetTranfo}, et il serait intéressant de pouvoir les utiliser. Finalement, nous nous posons la question de rendre ce corpus publique, après autorisation auprès des propriétaires, bien sur. Des corpus sur les objets archéologiques dans ce contexte sont virtuellement inexistant, et serais un ajout pertinent. 
+	Ensuite, nous voudrions encore enrichir notre corpus de données : des avances récentes ont été faite a ce sujet \cite{Transfo}, et il serait intéressant de pouvoir les utiliser. Finalement, nous nous posons la question de rendre ce corpus public, après autorisation auprès des propriétaires, bien sur. Des corpus sur les objets archéologiques dans ce contexte sont virtuellement inexistants, et serait un ajout pertinent. 
 \newpage
 \section{Annexes}
+
+
+
+
+\subsection{Scripts}
+\subsubsection{Script appliquant Canny sur tous nos releves}
+\begin{verbatim}
+#canny.py
+import numpy as np
+import cv2
+
+from matplotlib import pyplot as plt
+from os import listdir
+from os.path import isfile, join
+
+
+
+
+files = [ f for f in listdir("../Data/") if isfile(join("../Data/",f))]
+
+for image in files:
+    print "Analysing "+image
+    img = cv2.imread("../Data/"+image , 0)
+    edge = cv2.Canny(img,100,200)
+
+    plt.subplot(121), plt.imshow(img, cmap='gray')
+    plt.title('Original Image'), plt.xticks([]), plt.yticks([])
+
+    plt.subplot(122), plt.imshow(edge, cmap='gray')
+    plt.title('Edgy Image'), plt.xticks([]), plt.yticks([])
+
+    filename = "output/CANNY_"+image
+    plt.savefig(filename)
+\end{verbatim}
+
+\subsubsection{Script decoupant nos releves en carres de 96x96}
+
+
+\begin{spverbatim}
+#CutImage.py
+
+#Importation des librairies necessaire
+from PIL import Image #Python Image Library
+
+from os import listdir
+from os.path import isfile, join
+
+#On recupere les fichiers du repertoire PreparedData
+files = [f for f in listdir("../Data/PreparedData/") if isfile(join("../Data/PreparedData/", f))]
+
+
+n = 0
+
+#Fonction pour verifier si un carre est en noir et blanc
+def CheckGrayScale(img):
+    img = img.convert('RGB')
+    w,h = img.size
+
+    #On itere a travers tous les pixels de l'image
+    for i in range(w):
+        for j in range(h):
+            r,g,b = img.getpixel((i,j))
+            if (r == 24 and g==255 and b==0):#Si le pixel contient notre vert alors on renvoie faux
+
+                return False
+    return True
+
+for image in files:
+    n += 1
+    print "Analysing "+image+"[",n,"/",len(files),"]"
+
+    img = Image.open("../Data/PreparedData/"+image)#On ouvre l'image
+
+    width, height = img.size
+
+    #On decoupe l'image en carre de 96*96 avec un recouvrement de moitie
+
+    StrideX=48 #Decallage horizontal du carre
+    StrideY=48 #Decallage vertical du carre
+    numSquareLine = width/StrideX #Nombre de carre sur une ligne
+    numSquareCol = height/StrideY #Nombre de carre sur une colonne
+
+    print "Width = ", width, "Height =  ", height
+    print "Num Squares Line =",numSquareLine,"Num Square Col =", numSquareLine
+    print "StrideX=", StrideX, "StrideY=", StrideY
+    print "\n"
+
+    for i in range(numSquareCol): #On itere de 0 au nombre de carre dans une colonne
+        for j in range(numSquareLine): #On itere de 0 au nombre de carre dans une ligne
+            
+	    #On decoupe l'image en un carre de 96*96, en decallant a chaque fois de 48 pixels horizontalement et verticalement
+	    imgCropped = img.crop((j*StrideX, i*StrideY, 
+	    j*StrideX+96, i*StrideY+96))
+
+	    #On genere un filename avec les coordoones de l'image
+            Filename = "PreparedData/"+image+"("+str(j*StrideX)
+	    +","+str(i*StrideY)+")("+str(j*StrideX+96)+","+str(i*StrideY+96)+").png" 
+            
+	    imWidth, imHeight = imgCropped.size
+            
+	    #Si la taille de l'image est correcte ET si celle ci ne contient pas de vert, alors on enregistre
+	    if (imWidth == 96 and imHeight == 96 and CheckGrayScale(imgCropped) == True):
+                imgCropped.save(Filename)
+
+\end{spverbatim}
+
 
 \medskip
 \newpage
