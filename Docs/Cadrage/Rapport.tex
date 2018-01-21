@@ -77,7 +77,7 @@
 
 	\paragraph{}
 
-	Étant donnée que notre projet conduit principalement un travail de recherche, sur les conseils de notre suiveur, nous avons choisi de vous présenter l'avancement de notre travail et le premiers résultats que nous obtenons. \\
+	Étant donné que notre projet conduit principalement un travail de recherche, sur les conseils de notre suiveur, nous avons choisi de vous présenter l'avancement de notre travail et le premiers résultats que nous obtenons. \\
 	Ainsi, ce rapport décrit aussi notre démarche scientifique : notre approche initiale du problème, les résultats obtenus et les pistes de recherches pour le futur qui en découlent.
 	
 	\newpage
@@ -85,8 +85,9 @@
 	\subsection{Description}%Enoncer clairement la problematique et mieux decrire le projet
 		InSite analyse et détecte des objets archéologiques dans des relevés géomagnétiques, en utilisant des techniques novatrices dans le domaine de
 		la Computer Vision, ainsi que de l'apprentissage automatique.
+
 	\subsection{Objectifs}%Il faut hierarchiser les objectifs et les replacer dans le contexte + SMART
-	Nous cherchons a:
+	nous cherchons à:
 	\begin{itemize}
 		\item Analyser automatiquement des relevés géomagnétiques 
 		\item Produire des cartes d'intérêts, en indiquant les zones ou des objets archéologiques pourrait se trouver
@@ -112,7 +113,7 @@
 \section{Démarche Initiale}
 	
 	\subsection{Relevés géomagnétiques et origine de notre dataset}
-	Les relevés géomagnétiques sont utilise en archéologie depuis une vingtaine d'années. Ils permettent notamment d'obtenir une idée de la répartition d'objets et structures archéologiques. Un tel relevé s'obtient en mesurant le magnétisme du sol, grâce a un gradiomètre magnétique, qui mesure la différence entre deux mesures du champs magnétiques faites par deux capteurs.
+	Les relevés géomagnétiques sont utilisés en archéologie depuis une vingtaine d'années. Ils permettent notamment d'obtenir une idée de la répartition d'objets et structures archéologiques. Un tel relevé s'obtient en mesurant le magnétisme du sol, grâce a un gradiomètre magnétique, qui mesure la différence entre deux mesures du champs magnétiques faites par deux capteurs.
 	%Schema + Explication du principe
 	On construit ensuite des cartes en noir et blanc, représentant les variations du champs magnétique par une variation de niveau de gris. Une valeur positive forte sera blanche, tandis qu'une valeur négative forte sera noire. Ces relevés permettent de détecter des structures et objet enfouis jusqu'à quelques mètres de profondeur. En effet lorsque l'on construit, ou lorsque l'on fait cuire a l'aide de fours, on modifie les valeurs de champs magnétiques du terrain, et ces variations peuvent être observe. Ces relevés, mesurant le magnétisées du sol sont également très sensible aux objets métalliques, et le sont d'autant plus que ces objets sont proche du capteur, ce qui peux poser problèmes dans les zones ou une activité anthropologique récente a une lieu, car l'homme moderne rejette beaucoup de déchet métalliques. Ces objets métalliques contemporains sont des dipôles et provoquent sur les relevés des anomalies très caractéristiques. Nous discuterons de ces anomalies plus bas.
 
@@ -243,7 +244,7 @@
 		\label{fig:OurSobel}
 	\end{figure}
 
-	Sur nos images, les résultats obtenus ne sont pas très pertinent. Le bruit est trop prévalent, et les bords des objets que nous cherchons a détecter sont trop faibles pour que l'opérateur de Sobel puisse donne des résultats intéressant.
+	Sur nos images, les résultats obtenus ne sont pas très pertinent. Le bruit est trop prévalent, et les bords des objets que nous cherchons à détecter sont trop faibles pour que l'opérateur de Sobel puisse donne des résultats intéressant.
 
 	Nous avons ensuite décidé d'utiliser un autre algorithme, celui de Canny \cite{CannyOp}. L'algorithme de Canny reprend les matrices de Sobel, et applique quelques opérations supplémentaire pour obtenir des bords mieux défini. Les détails de l'algorithme sont décrit ci-dessous
 	\begin{enumerate}
