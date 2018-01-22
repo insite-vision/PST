@@ -12,8 +12,15 @@
 \usepackage{hyperref}
 \usepackage{spverbatim}
 \usepackage[margin=1.2in]{geometry}
+<<<<<<< HEAD
 \usepackage{listings}
 \usepackage{color}
+=======
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{capt-of}
+>>>>>>> Added a Gantt diagramm: Satan seems to have made the formating for large tables in LaTeX
 
 \graphicspath{ {images/}}
 \addbibresource{Biblio.bib}
@@ -117,7 +124,7 @@
 
 	Étant donné que notre projet conduit principalement un travail de recherche, sur les conseils de notre suiveur, nous avons choisi de vous présenter l'avancement de notre travail et le premiers résultats que nous obtenons. \\
 	Ainsi, ce rapport décrit aussi notre démarche scientifique : notre approche initiale du problème, les résultats obtenus et les pistes de recherches pour le futur qui en découlent.
-	
+
 	\newpage
 \section{Présentation}
 	\subsection{Description}%Enoncer clairement la problematique et mieux decrire le projet
@@ -159,13 +166,45 @@
 	Comme inSite est un projet non pas de développement, mais de recherche, nous utilisons une démarche différentes de celle trouve habituellement dans les PST: nous passons une grande partie de notre temps a faire des recherches, et nous n'écrivons que des petits scripts, qui répondent a une tache particulière. Par exemple, l'application de l'algorithme de Canny, pour la détection de bords sur les relevés,
 	ou le découpage des cartes en carres pour l'analyse. Quelques exemples sont disponibles en Annexe %Rajouter canny.py et CutImage.py en annexe
 	\subsection{Planning}
+	Un planning definitif est difficile a mettre en place pour une activite de recherche, car les resultats obtenu peuvent grandement affecter la facon dont nous repartissons le travail, et les problematiques que nous cherchons a resoudre. Cependant, on peut avoir une idee generale du planning et de la repartition des taches dans le temps. Un diagramme de Gantt est une excellente facon de voir cette repartition :
+\newpage
+
+\afterpage{
+	\clearpage
+	\thispagestyle{empty}
+	\begin{landscape}
+		\begin{table}[]
+			\centering
+			\caption{My caption}
+			\label{my-label}
+			\begin{tabular}{l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+				\cline{2-16}
+																	 & 15/11              & 01/12           & 15/12              & 01/01/18            & 15/01               & 01/02            & 15/02               & 01/03               & 15/03                 & 01/04              & 15/04                 & 01/05                & 15/05                   & 01/06               & 15/06                  \\ \hline
+				\multicolumn{1}{|l|}{Test initiaux}                                                                      & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
+				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Nettoyage\\  du bruit\end{tabular}}                      &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
+				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Recherches \end{tabular}}  & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} \\ \hline
+				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Generation\\  d'exemples\end{tabular}}                   &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
+				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Construction \\ du corpus \\ de donnees\end{tabular}}    &                          &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
+				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Ecriture du \\ rapport de\\  mi-parcours\end{tabular}}   &                          & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{FE0000} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
+				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Construction \\ d'un CNN\end{tabular}}                   &                          &                          &                          &                          &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
+				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Analyse des \\ resultats \end{tabular}}      &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{FE0000} & \cellcolor[HTML]{FE0000} &                          &                          &                          &                          &                          &                          &                          \\ \hline
+				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Rafinement et \\ amelioration\end{tabular}}    &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          \\ \hline
+				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Extension\\  du CNN\end{tabular}}                        &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          \\ \hline
+				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Analyse des\\  resultats\end{tabular}}      &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          \\ \hline
+				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Rafinement et \\ amelioration\end{tabular}}    &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{FE0000} & \cellcolor[HTML]{FE0000} & \cellcolor[HTML]{FE0000} \\ \hline
+				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Ecriture du \\ rapport\end{tabular}} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{FE0000} & \cellcolor[HTML]{FE0000} \\ \hline
+			\end{tabular}
+		\end{table}
+	\end{landscape}
+	\clearpage
+	}
 	\subsubsection{Dates Clefs}
 	\subsection{Langages et technologies utilisées}
 	Pour simplifier le développement, nous utilisons Python2 avec les librairies numpy, pyplot, cv2, qui possèdent de nombreuse fonctions mathématique et d'analyse d'image déjà implémentées.
 	\newpage
 
 \section{Démarche Initiale}
-	
+
 	\subsection{Relevés géomagnétiques}
 	Les relevés géomagnétiques sont utilisés en archéologie depuis une vingtaine d'années. Ils permettent notamment d'obtenir une idée de la répartition d'objets et structures archéologiques. En archeologie, on utilise habituellement un gradiometre avec des capteurs \textit{fluxgate}. Un gradiometre mesure la differences de la mesure de deux capteurs. Les \textit{fluxgate} sont frequement utilise cars ils sont peu cher, facilement miniaturisable et donne une bonne precision.
 
@@ -179,7 +218,7 @@
 	Lorsqu'un champs magnetique exterieur est introduit, la direction du champs sera modifie, proportionnellement a l'amplitude du champs exterieur. Ce champs induira une tension dans un fil secondaire, que l'on mesure et qui nous donnera une indication sur l'amplitude du champs magnetique present a cet endroit sur un plan. En placant plusieurs de ces capteurs sur differents plan, on peut meme connaitre l'amplitude du champs en 3 dimensions. Sur la figure \ref{fig:FluxPlot}, on peut y voir comment l'ajout d'un champs magnetique exterieur affecte le champs magnetique du \textit{fluxgate}
 
 \begin{figure}[H]
-		\centering
+	\centering
 		\includegraphics[width=\textwidth, height=0.9\textheight, keepaspectratio]{FluxgatePlot.jpg}
 		\caption{Graphe des formes de l'onde pour un demi-coeur, les deux demi-coeurs, les deux demi-coeurs avec un champs magnetique exterieur, et la tension induite dans le fil secondaire, image du Imperial College of London}. 
 		\label{fig:FluxPlot}
@@ -188,7 +227,7 @@
 		Une prise releves se fait en delimitant d'abord la zone en carres, dont les coordoonnes GPS sont prise. Un operateur, portant un le gradiometre fera un allez sur une longeur de generalement environ 25m, selon la zone a mesure, se decallera d'1M puis retournera sur l'axe de depart. Une zone de 25x25m est couverte en environ 45 minutes.
 
 \begin{figure}[H]
-		\centering
+	\centering
 		\includegraphics[width=\textwidth, height=0.9\textheight, keepaspectratio]{MagnetoMetre.jpeg}
 		\caption{Personne prenant des releves geophysique avec un gradiometre. On y voit les deux capteurs. Image de Wikipedia\cite{WikiGrad}}
 		\label{fig:FluxPlot}
@@ -197,9 +236,10 @@
 	On construit ensuite des cartes en noir et blanc, représentant les variations du champs magnétique par une variation de niveau de gris. Une valeur positive forte sera blanche, tandis qu'une valeur négative forte sera noire. Ces relevés permettent de détecter des structures et objet enfouis jusqu'à quelques mètres de profondeur. En effet lorsque l'on construit, ou lorsque l'on fait cuire a l'aide de fours, on modifie les valeurs de champs magnétiques du terrain, et ces variations peuvent être observe. Ces relevés, mesurant le magnétisées du sol sont également très sensible aux objets métalliques, et le sont d'autant plus que ces objets sont proche du capteur, ce qui peux poser problèmes dans les zones ou une activité anthropologique récente a une lieu, car l'homme moderne rejette beaucoup de déchet métalliques. Ces objets métalliques contemporains sont des dipôles et provoquent sur les relevés des anomalies très caractéristiques. Nous discuterons de ces anomalies plus bas.
 
 	\subsection{Origine de notre corpus de donnees et contexte historique}
-	
+
 	Nos relevés nous proviennent tous du site archéologique de Marsal, en Moselle, et ont été réalisés au cours d'une quinzaine d'année, lors de la campagne de fouille de Laurent OLIVIER.%TODO: CONTEXTUALISER%
-	. Cette région possède des marais salants, et on trouve des traces d'une exploitation industrielle très importante aux alentours de l'age du Fer (VII\textsuperscript{ème}-I\textsuperscript{ème} siècle avant J.C). On trouve des traces de ces exploitations avec par exemple une quantité extrêmement élevée de briquetage (déchets de terre cuite, utilise pour la cuisson de la saumure); ce n'est pas moins de 4 millions de mètres cube de briquetage accumule dans la région, soit presque deux fois le volume de la pyramide de Kheops. Le sel était, et a longtemps été une ressource stratégique; car en plus de servir d'épice, le sel est utilise dans la conservation d'aliments, et les populations agricultrice, qui consomme moins de viande doivent supplémenter leur apport par du sel. La région a donc été très riche par le passe. Dans les fouilles, on trouve nombre de fours de grande taille, en forme de "U", qui servaient a la préparation du sel, et les corps trouves sur les sites de productions de sel sont mal nourris, ce qui semble indiquer que ce sont des esclaves, ou en tout cas des "employés" qui ne possèdent pas les fours ni le sel qu'ils produisent. %Donner source plus exemples de releves 
+	. Cette région possède des marais salants, et on trouve des traces d'une exploitation industrielle très importante aux alentours de l'age du Fer (VII\textsuperscript{ème}-I\textsuperscript{ème} siècle avant J.C). On trouve des traces de ces exploitations avec par exemple une quantité extrêmement élevée de briquetage (déchets de terre cuite, utilise pour la cuisson de la saumure); ce n'est pas moins de 4 millions de mètres cube de briquetage accumule dans la région, soit presque deux fois le volume de la pyramide de Kheops. Le sel était, et a longtemps été une ressource stratégique; car en plus de servir d'épice, le sel est utilise dans la conservation d'aliments, et les populations agricultrice, qui consomme moins de viande doivent supplémenter leur apport par du sel. La région a donc été très riche par le passe. 
+	L'utilisation de releves geophysique dans la campagne de fouille a permis de mettre en evidence l'aspect structure des sites d'ateliers du briquetage, que l'ont pensait jusqu'ici comme des "depotoirs" pour des dechets de productions.  
 
 	\newpage
 	\subsection{Détections d'objets}
@@ -319,7 +359,7 @@
 		\begin{subfigure}[]{0.4\linewidth}
 			\includegraphics[width=\linewidth]{Sobel1a.png}
 			\caption{Image traite avec Sobel}
-			
+
 		\end{subfigure}
 		\caption{Traitement du relevé magnéto-métrique de l'amphithéâtre de Tarquimpol (Moselle), avec l'opérateur Sobel}
 		\label{fig:OurSobel}
@@ -340,7 +380,7 @@
 			direction du gradient. \\
 			Si oui, c'est un bord et sa valeur est garde pour la prochaine étape, sinon, elle est mise a 0. On obtient une image binaire, avec que des bords
 
-		\newpage
+			\newpage
 
 		\item \textbf{Seuil d'Hysterisis} \\
 			\indent On utilise deux seuils, $minVal$ et $maxVal$. Tout les bords ayant une intensité de gradient supérieur a $maxVal$ est forcement un
@@ -396,7 +436,8 @@
 	\end{figure}
 
 	\subsubsection{Problèmes rencontres}
-	De toute évidence, nous avions atteint un obstacle: le bruit. Celui ci était présent sur toutes les images, au point d'empêcher toute tentative d'analyse classique de signal. La magnétométrie est très sensible aux objets métalliques, et dans la région ou ont été fait les relevés, de nombreux objets métalliques contemporains sont présent dans le terrain, notamment a cause des combats de la 2\textsuperscript{ème} guerre mondiale, mais aussi a cause des labours, et du déchets métallique produit par l'occupation humaines de ces terrains.\\
+	De toute évidence, nous avions atteint un obstacle: le bruit. Celui ci était présent sur toutes les images, au point d'empêcher toute tentative d'analyse classique de signal. La magnétométrie est très sensible aux objets métalliques, et dans la région ou ont été fait les relevés, de nombreux objets métalliques contemporains sont présent dans le terrain, notamment a cause des combats de la 2\textsuperscript{ème} guerre mondiale, mais aussi a cause des labours, et du déchets métallique produit par l'occupation humaines de ces terrains.
+
 	Une analyse classique ne suffisait donc pas, et le développement de méthodes de filtrage et de détection de bords étant capable de traiter des images aussi bruite est hors de notre porte. Notre attention devait donc se porter sur la résolution d'un problème, annexe a celui qui nous intéressait, mais dont les techniques développé par sa résolution pouvait nous aider dans notre objectifs principal.
 
 \newpage
@@ -412,8 +453,8 @@
 	Les dipôles proviennent des objets métalliques contemporains, et se caractérisent par un pôle positif très fort au niveau de l'objet, suivi d'un halo circulaire négatif, dont le diamètre est approximativement 2 fois celui de l'objet. On peut voir sur la figure \ref{fig:DipoleExample} que les anomalies se ressemblent beaucoup, et son très présentes sur virtuellement toutes les cartes. De plus elles sont assez grandes pour être immédiatement reconnu sur nos relevés, ce qui simplifie la tache d'annotation des exemples a apprendre. 
 
 Un aspect intéressant de ce problème est, bien que si les dipôles produit par des objets métalliques contemporains sont généralement considère comme du bruit, ce n'est parce qu'ils \textit{ne font pas partie de la période recherche}. En d'autre terme, un objet métallique récent est un objet archéologique comme les autres: il provient d'une certaine période historique, a une ou plusieurs techniques de fabrication qui lui sont propre, provient d'un certains lieu... Dans certaines circonstance de recherche, en particulier lorsque le site et les objets est date de la protohistoire, des objets datant de l'occupation romaine sont vu comme du bruit. C'est le cas avec le site de Marsal, ou une occupation romaine a eu pour conséquence des rejets de déchets datant de l'ère romaine, comme des tuiles, qui provoque du "bruit" sur nos cartes. En somme, il ne faut pas voir notre approche comme une recherche de "bruit", mais simplement comme un changement d'objet d'intérêt. Nous en choisissons un distinct, commun, et donc plus facile a étudier.
-	%RAJOUTER IMAGE DIPOLE REEL
-	%RAJOUTER PLOT3D DIPOLE
+%RAJOUTER IMAGE DIPOLE REEL
+%RAJOUTER PLOT3D DIPOLE
 	\begin{figure}[H]
 		\centering
 		\begin{subfigure}[b]{0.3\linewidth}
@@ -465,9 +506,9 @@ Un aspect intéressant de ce problème est, bien que si les dipôles produit par
 	\textbf{Traitement des images}:\\%Rajouter Schema explicatif
 	\indent Afin d'obtenir une meilleure qualité d'exemples nous avons utilise ceux provenant de nos données originelle. Nous avons d'abord découpe chacune des images en carre de taille 96*96 pixels; en décalant le carre de 48 pixels verticalement et horizontalement a chaque fois, nous pouvons obtenir encore plus d'exemples. En décalant la fenêtre qui obtient le carre de 48 pixels, on obtient un également un meilleur recouvrement des pixels.
 
-	
+
 \begin{figure}[H]
-		\centering
+	\centering
 		\includegraphics[width=5cm]{ExempleCarre.png}
 		\caption{Représentation du nombre de fois ou une zone a été recouverte, ici avec un décalage de la taille du carre. Chaque zone est n'est couverte que par un seul carre}. 
 		\label{fig:ExempleCarre}
@@ -476,11 +517,11 @@ Un aspect intéressant de ce problème est, bien que si les dipôles produit par
 Les relevés dont nous disposons n'ont pas tous une forme rectangulaire. En effet il s'agit de plusieurs zones rectangulaire ou des relevés ont été fait, avec des zones blanches ou il n'y pas de relevés. Ces zones sans relevés nous sont inutile. Pour ne pas avoir de carre sans relevés, nous avons colore les zones blanches en vert (voir la figure \cite{fig:ReleveColore} pour un exemple). Lors du découpage nous vérifions si notre image contient du vert (Notre vert est particulier car il contient un peu de rouge. Il s'agissait initialement d'une erreur). Si le carre contient du vert, cela veut dire qu'une partie, ou la totalité, du carre est une zone sans relevés.
 
 \begin{figure}[H]
-		\centering
+	\centering
 		\includegraphics[width=6cm]{ExemplePretraitement.jpg}
 		\caption{Retraitement d'une carte avec remplacement des zones sans relevés blanche par du vert}. 
 		\label{fig:ReleveColore}
-	\end{figure}
+\end{figure}
 
 Au final, nous avons pu obtenir plus de 51000 carres, grâce au fait que les images était très grande (souvent plus de 2000*2000 pixels). Nous avons ensuite, a la main, trouve tous les carres contenant un dipôles, ce qui nous donne 413 images de dipôles. Ces images, provenant du monde réelle sont très variée, que ce soit par leur taille, leur position dans l'image ou encore leur nombre.
 
@@ -565,7 +606,80 @@ Pour ne pas obtenir plusieurs fois la meme images, nous avons etudie la symetrie
 \newpage
 
 \subsubsection{Script decoupant nos relevés en carrés de 96x96}
+<<<<<<< HEAD
 \lstinputlisting[language=python]{cutimage.py}
+=======
+
+
+\begin{spverbatim}
+#CutImage.py
+
+#Importation des librairies necessaire
+from PIL import Image #Python Image Library
+
+from os import listdir
+from os.path import isfile, join
+
+#On recupere les fichiers du repertoire PreparedData
+files = [f for f in listdir("../Data/PreparedData/") if isfile(join("../Data/PreparedData/", f))]
+
+
+n = 0
+
+#Fonction pour verifier si un carre est en noir et blanc
+def CheckGrayScale(img):
+    img = img.convert('RGB')
+    w,h = img.size
+
+    #On itere a travers tous les pixels de l'image
+    for i in range(w):
+	for j in range(h):
+	    r,g,b = img.getpixel((i,j))
+	    if (r == 24 and g==255 and b==0):#Si le pixel contient notre vert alors on renvoie faux
+
+		return False
+    return True
+
+for image in files:
+    n += 1
+    print "Analysing "+image+"[",n,"/",len(files),"]"
+
+    img = Image.open("../Data/PreparedData/"+image)#On ouvre l'image
+
+    width, height = img.size
+
+    #On decoupe l'image en carre de 96*96 avec un recouvrement de moitie
+
+    StrideX=48 #Decallage horizontal du carre
+    StrideY=48 #Decallage vertical du carre
+    numSquareLine = width/StrideX #Nombre de carre sur une ligne
+    numSquareCol = height/StrideY #Nombre de carre sur une colonne
+
+    print "Width = ", width, "Height =  ", height
+    print "Num Squares Line =",numSquareLine,"Num Square Col =", numSquareLine
+    print "StrideX=", StrideX, "StrideY=", StrideY
+    print "\n"
+
+    for i in range(numSquareCol): #On itere de 0 au nombre de carre dans une colonne
+	for j in range(numSquareLine): #On itere de 0 au nombre de carre dans une ligne
+
+	    #On decoupe l'image en un carre de 96*96, en decallant a chaque fois de 48 pixels horizontalement et verticalement
+	    imgCropped = img.crop((j*StrideX, i*StrideY, 
+	    j*StrideX+96, i*StrideY+96))
+
+	    #On genere un filename avec les coordoones de l'image
+	    Filename = "PreparedData/"+image+"("+str(j*StrideX)
+	    +","+str(i*StrideY)+")("+str(j*StrideX+96)+","+str(i*StrideY+96)+").png" 
+
+	    imWidth, imHeight = imgCropped.size
+
+	    #Si la taille de l'image est correcte ET si celle ci ne contient pas de vert, alors on enregistre
+	    if (imWidth == 96 and imHeight == 96 and CheckGrayScale(imgCropped) == True):
+		imgCropped.save(Filename)
+
+\end{spverbatim}
+
+>>>>>>> Added a Gantt diagramm: Satan seems to have made the formating for large tables in LaTeX
 
 \medskip
 \newpage
