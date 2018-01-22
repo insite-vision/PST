@@ -87,6 +87,7 @@
 		la Computer Vision, ainsi que de l'apprentissage automatique.
 
 		\subsubsection{Genèse du projet}
+		L'idee d'appliquer des techniques d'analyse d'image a des releves archeologiques est ne lors du stage ouvrier de Martin OLIVIER, ou il a pu travailler quelques jours sur le chantier ecole de Marsal en Lorraine, dirige par Laurent OLIVIER, qui utilise de maniere extensive les releves geophysiques, que ce soit avec la magnetometrie, ou le radar de sol, ou le LIDAR. Bien que tres avance techniquement, ces releves etait toujours analyse de maniere "manuelle", avec un archeologue annotant a la main toutes les parties de la carte ou des objets/structures se situent. Un des inconvenient de cette approche est qu'elle ne permet pas d'avoir une bonne objectivte sur les elements de l'image; la detection se base sur quelques criteres comme par exemple la linearite/ponctualite ou la puissance du signal, mais il s'agit ultimement de l'approche personnelle de l'observateur. En creant un systeme analysant chaque cartes de l'exacte meme facon, on peut mieux comparer et construire des statistiques sur ces releves. Martin a donc propose d'apporter ses connaissances en matiere de traitement informatise aux images, et de construire une approche plus structure de l'analyse.
 			{TODO: les folles aventures de Martin en Lorraine}
 
 		\subsubsection{Identification des problématiques}
@@ -128,11 +129,38 @@
 
 \section{Démarche Initiale}
 	
-	\subsection{Relevés géomagnétiques et origine de notre dataset}
-	Les relevés géomagnétiques sont utilisés en archéologie depuis une vingtaine d'années. Ils permettent notamment d'obtenir une idée de la répartition d'objets et structures archéologiques. Un tel relevé s'obtient en mesurant le magnétisme du sol, grâce a un gradiomètre magnétique, qui mesure la différence entre deux mesures du champs magnétiques faites par deux capteurs.
-	%Schema + Explication du principe
+	\subsection{Relevés géomagnétiques}
+	Les relevés géomagnétiques sont utilisés en archéologie depuis une vingtaine d'années. Ils permettent notamment d'obtenir une idée de la répartition d'objets et structures archéologiques. En archeologie, on utilise habituellement un gradiometre avec des capteurs \textit{fluxgate}. Un gradiometre mesure la differences de la mesure de deux capteurs. Les \textit{fluxgate} sont frequement utilise cars ils sont peu cher, facilement miniaturisable et donne une bonne precision.
+
+	Un \textit{fluxgate} fonctionne en induisant un champs magnetique en faisant passer un courant electrique dans un fil entourant un metal conducteur. En inversant la polarite de ce courant rapidement, on inverse egalement la direction du champs magnetique, et le champs n'as en moyenne plus de direction.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=\textwidth, height=0.9\textheight, keepaspectratio]{FluxgateDiagram.jpg}
+		\caption{Diagramme d'un fluxgate, image du Imperial College of London}. 
+		\label{fig:FluxDiag}
+	\end{figure}
+	Lorsqu'un champs magnetique exterieur est introduit, la direction du champs sera modifie, proportionnellement a l'amplitude du champs exterieur. Ce champs induira une tension dans un fil secondaire, que l'on mesure et qui nous donnera une indication sur l'amplitude du champs magnetique present a cet endroit sur un plan. En placant plusieurs de ces capteurs sur differents plan, on peut meme connaitre l'amplitude du champs en 3 dimensions. Sur la figure \ref{fig:FluxPlot}, on peut y voir comment l'ajout d'un champs magnetique exterieur affecte le champs magnetique du \textit{fluxgate}
+
+\begin{figure}[H]
+		\centering
+		\includegraphics[width=\textwidth, height=0.9\textheight, keepaspectratio]{FluxgatePlot.jpg}
+		\caption{Graphe des formes de l'onde pour un demi-coeur, les deux demi-coeurs, les deux demi-coeurs avec un champs magnetique exterieur, et la tension induite dans le fil secondaire, image du Imperial College of London}. 
+		\label{fig:FluxPlot}
+\end{figure}
+
+		Une prise releves se fait en delimitant d'abord la zone en carres, dont les coordoonnes GPS sont prise. Un operateur, portant un le gradiometre fera un allez sur une longeur de generalement environ 25m, selon la zone a mesure, se decallera d'1M puis retournera sur l'axe de depart. Une zone de 25x25m est couverte en environ 45 minutes.
+
+\begin{figure}[H]
+		\centering
+		\includegraphics[width=\textwidth, height=0.9\textheight, keepaspectratio]{MagnetoMetre.jpeg}
+		\caption{Personne prenant des releves geophysique avec un gradiometre. On y voit les deux capteurs. Image de Wikipedia\cite{WikiGrad}}
+		\label{fig:FluxPlot}
+\end{figure}
+%Schema + Explication du principe
 	On construit ensuite des cartes en noir et blanc, représentant les variations du champs magnétique par une variation de niveau de gris. Une valeur positive forte sera blanche, tandis qu'une valeur négative forte sera noire. Ces relevés permettent de détecter des structures et objet enfouis jusqu'à quelques mètres de profondeur. En effet lorsque l'on construit, ou lorsque l'on fait cuire a l'aide de fours, on modifie les valeurs de champs magnétiques du terrain, et ces variations peuvent être observe. Ces relevés, mesurant le magnétisées du sol sont également très sensible aux objets métalliques, et le sont d'autant plus que ces objets sont proche du capteur, ce qui peux poser problèmes dans les zones ou une activité anthropologique récente a une lieu, car l'homme moderne rejette beaucoup de déchet métalliques. Ces objets métalliques contemporains sont des dipôles et provoquent sur les relevés des anomalies très caractéristiques. Nous discuterons de ces anomalies plus bas.
 
+	\subsection{Origine de notre corpus de donnees et contexte historique}
+	
 	Nos relevés nous proviennent tous du site archéologique de Marsal, en Moselle, et ont été réalisés au cours d'une quinzaine d'année, lors de la campagne de fouille de Laurent OLIVIER.%TODO: CONTEXTUALISER%
 	. Cette région possède des marais salants, et on trouve des traces d'une exploitation industrielle très importante aux alentours de l'age du Fer (VII\textsuperscript{ème}-I\textsuperscript{ème} siècle avant J.C). On trouve des traces de ces exploitations avec par exemple une quantité extrêmement élevée de briquetage (déchets de terre cuite, utilise pour la cuisson de la saumure); ce n'est pas moins de 4 millions de mètres cube de briquetage accumule dans la région, soit presque deux fois le volume de la pyramide de Kheops. Le sel était, et a longtemps été une ressource stratégique; car en plus de servir d'épice, le sel est utilise dans la conservation d'aliments, et les populations agricultrice, qui consomme moins de viande doivent supplémenter leur apport par du sel. La région a donc été très riche par le passe. Dans les fouilles, on trouve nombre de fours de grande taille, en forme de "U", qui servaient a la préparation du sel, et les corps trouves sur les sites de productions de sel sont mal nourris, ce qui semble indiquer que ce sont des esclaves, ou en tout cas des "employés" qui ne possèdent pas les fours ni le sel qu'ils produisent. %Donner source plus exemples de releves 
 
