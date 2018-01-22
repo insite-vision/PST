@@ -366,10 +366,10 @@
 \section{Développement d'une nouvelle méthodologie}
 	\subsection{Détection d'objets métalliques par réseaux neuronaux}
 	Comme dit plus haut, les techniques classiques utilise dans l'analyse d'image sont inapplicables dans notre cas, du notamment au haut niveau de bruit présent dans les images a traites. Cependant, il est évidents que ce bruit n'est pas identique aux objets que nous cherchons, car sinon, les archéologues ne pourrait pas analyser ces images. Pour mieux diriger nos recherches nous avons choisi de détecter un type particulier de signaux, ceux provenant d'objet métalliques. Les réseaux de convolution sont très adapte a cette taches; car ils filtrent l'image et développent eux même les règles qui définissent l'objet ainsi que leur filtres. Ils permettent de détecter des motifs dans des parties de l'image, et non plus sur des pixels individuels, comme était le cas avec le filtrage ou la détection de bords. De plus, nous construisons un réseau n'apprenant a détecter qu'une seule classe d'objet, ce qui rendra l'apprentissage plus rapide. Si nous réussissons a détecter ces objets métalliques, nous pouvons alors:
-	\begin{enumerate}
+	\begin{itemize}
 		\item "Nettoyer" les cartes de ces objets, qui ont tendance a rendre difficile la lecture, en appliquant un flou gaussien par exemple
 		\item Utiliser le même réseau dans la détection de plus d'objet, en transférant l'apprentissage déjà fait sur un plus grand nombre de classe
-	\end{enumerate}
+	\end{itemize}
 
 	\subsubsection{Caractérisation}
 	Les dipôles proviennent des objets métalliques contemporains, et se caractérisent par un pôle positif très fort au niveau de l'objet, suivi d'un halo circulaire négatif, dont le diamètre est approximativement 2 fois celui de l'objet. On peut voir sur la figure \ref{fig:DipoleExample} que les anomalies se ressemblent beaucoup, et son très présentes sur virtuellement toutes les cartes. De plus elles sont assez grandes pour être immédiatement reconnu sur nos relevés, ce qui simplifie la tache d'annotation des exemples a apprendre. 
@@ -421,7 +421,8 @@ Un aspect intéressant de ce problème est, bien que si les dipôles produit par
 	\indent$\phi$ angle de phase a l'origine\\
 	\indent$i,j$ décalage horizontal et vertical, respectivement, par rapport a l'origine
 
-	Avec la génération aléatoire des paramètres de cette fonction, nous pouvons obtenir une grande variété d'exemple qui ressemble aux dipôles retrouves dans nos cartes. 
+	Avec la génération aléatoire des paramètres de cette fonction, nous pouvons obtenir une grande variété d'exemple qui ressemble aux dipôles retrouves dans nos cartes.
+
 	%TODO: Rajouter exemple 3D Dipole Reel vs Dipole Genere
 	%TODO: Source image : Document PZP (Lieu)
 	\textbf{Traitement des images}:\\%Rajouter Schema explicatif
@@ -430,12 +431,12 @@ Un aspect intéressant de ce problème est, bien que si les dipôles produit par
 	
 \begin{figure}[H]
 		\centering
-		\includegraphics[width=\linewidth]{ExempleCarre.png}
+		\includegraphics[width=5cm]{ExempleCarre.png}
 		\caption{Représentation du nombre de fois ou une zone a été recouverte, ici avec un décalage de la taille du carre. Chaque zone est n'est couverte que par un seul carre}. 
 		\label{fig:ExempleCarre}
 \end{figure}
 
-Les relevés dont nous disposons n'ont pas tous une forme rectangulaire. En effet il s'agit de plusieurs zones rectangulaire ou des relevés ont été fait, avec des zones blanches ou il n'y pas de relevés. Ces zones sans relevés nous sont inutile. Pour ne pas avoir de carre sans relevés, nous avons colore les zones blanches en vert (voir la figure \cite{ReleveColore} pour un exemple). Lors du découpage nous vérifions si notre image contient du vert (Notre vert est particulier car il contient un peu de rouge. Il s'agissait initialement d'une erreur). Si le carre contient du vert, cela veut dire qu'une partie, ou la totalité, du carre est une zone sans relevés.
+Les relevés dont nous disposons n'ont pas tous une forme rectangulaire. En effet il s'agit de plusieurs zones rectangulaire ou des relevés ont été fait, avec des zones blanches ou il n'y pas de relevés. Ces zones sans relevés nous sont inutile. Pour ne pas avoir de carre sans relevés, nous avons colore les zones blanches en vert (voir la figure \cite{fig:ReleveColore} pour un exemple). Lors du découpage nous vérifions si notre image contient du vert (Notre vert est particulier car il contient un peu de rouge. Il s'agissait initialement d'une erreur). Si le carre contient du vert, cela veut dire qu'une partie, ou la totalité, du carre est une zone sans relevés.
 
 \begin{figure}[H]
 		\centering
@@ -446,13 +447,60 @@ Les relevés dont nous disposons n'ont pas tous une forme rectangulaire. En effe
 
 Au final, nous avons pu obtenir plus de 51000 carres, grâce au fait que les images était très grande (souvent plus de 2000*2000 pixels). Nous avons ensuite, a la main, trouve tous les carres contenant un dipôles, ce qui nous donne 413 images de dipôles. Ces images, provenant du monde réelle sont très variée, que ce soit par leur taille, leur position dans l'image ou encore leur nombre.
 
-	Cependant, 400 images n'est toujours pas suffisant pour entrainer un réseau. Pour enrichir notre datasse nous avons décidé d'appliquer quelques transformations sur chacune des images. A l'heure ou nous écrivons ces lignes, nous avons implémenté les transformations suivantes :
-	\begin{enumerate}
-		\item Rotation de l'image sur l'axe x %Schema pour chacun de ces transfo
-		\item Rotation de l'image sur l'axe y 
-		\item Ajout de bruit
-	\end{enumerate}
-	
+	Cependant, 400 images n'est toujours pas suffisant pour entrainer un réseau, et nous devons enrichir notre corpus, c'est a dire creer de nouveaux exemples a partir d'exemples pre-existant. Les objets que nous cherchons sont (en simplifiant) compose de formes circulaire imbrique. En appliquant des transformations, nous esperons creer des images differentes de celles originelle, mais gardant les concepts de l'image. Nous pouvons donc creer un nombre important de nouveaux exemples en appliquant quelques transformations simples. A l'heure ou nous écrivons ces lignes, nous avons implémenté les transformations suivantes :
+	\begin{itemize}
+		\item Reflection de l'image sur l'axe x %Schema pour chacun de ces transfo
+		\item Reflection de l'image sur l'axe y 
+		\item Rotation l'image sur par un angle $\theta$ avec $1/2\pi < \theta < 3/2\pi$  
+	\end{itemize}
+Pour ne pas obtenir plusieurs fois la meme images, nous avons etudie la symetrie de groupe de nos images: nous avons 5 transformations disponibles: 
+	\begin{itemize}
+		\item Rotation de $1/2\pi$ $\pi$ $3/2\pi$
+		\item Reflection sur l'axe x ou y
+	\end{itemize}
+	En appliquant une seule transformation sur l'image originelle on obtient cinq images distinctes. On peut en obtenir deux de plus en appliquant deux tranformations (une rotation et une reflection) sur l'image originelle. On obtient donc huit images distinctes, en comptant l'image originelle. Si on tente d'appliquer plus de deux transformations, on a une symetrie et on retrouve une des images deja obtenue.
+	En appliquant ces 7 operations, on obtient donc $7*413 = 2891$ images.  
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}[t]{0.3\linewidth}
+			\includegraphics[width=\linewidth]{ExempleBase.png}
+			\caption{Exemple de base}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.3\linewidth}
+			\includegraphics[width=\linewidth]{Exemple90.png}
+			\caption{Transformation avec rotation de $\pi/2$}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.3\linewidth}
+			\includegraphics[width=\linewidth]{Exemple180.png}
+			\caption{Transformation avec rotation de $\pi$}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.3\linewidth}
+			\includegraphics[width=\linewidth]{Exemple270.png}
+			\caption{Transformation avec rotation de $\pi3/2$}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.3\linewidth}
+			\includegraphics[width=\linewidth]{ExempleFlipX.png}
+			\caption{Transformation avec transposition de gauche a droite}
+		\end{subfigure}
+		\begin{subfigure}[t]{0.3\linewidth}
+			\includegraphics[width=\linewidth]{ExempleFlipY.png}
+			\caption{Transformation avec transposition de bas en haut}
+		\end{subfigure}
+
+
+		\begin{subfigure}[t]{0.3\linewidth}
+			\includegraphics[width=\linewidth]{ExempleF90.png}
+			\caption{Transformation avec transposition de gauche a droite et rotation de $\pi/2$  }
+		\end{subfigure}
+		\begin{subfigure}[t]{0.3\linewidth}
+			\includegraphics[width=\linewidth]{ExempleF180.png}
+			\caption{Transformation avec transposition de gauche a droite et rotation de $\pi$}
+		\end{subfigure}
+				\caption{Quelques exemples de dipôles, récupéré sur plusieurs relevés différents. On peut observer leur similitudes, tant par leur formes que par leur tailles}
+		\label{fig:DipoleExample}
+	\end{figure}
+
+
 	\textbf{Implémentation Réseau Neuronal}\\
 	\indent Nous avons implémenté un réseau neuronal classique s'entrainant sur des exemples générés. Le réseau reprends l'architecture de l'exemple de TensorFlow pour la classification de chiffres manuscrit avec une modification du nombre d'entrée pour s'adapter a la taille des exemples générés. Lors de l'entrainement, on a pu observer une très rapide maximisation du taux de détection, arrivant a un taux de réussite de 100\% sur les exemples de test en 4 époques. Nous avons ensuite tente d'appliquer ce réseau sur une carte, dans l'espoir de créer une \textit{heatmap} d'activation du réseau. Malheureusement, ce réseau possédait un taux d'erreur très élevé sur les exemples réels. Nous ne possédions pas le temps d'implémenter un réseau neuronal de convolution, et les résultats obtenu avec le réseau neuronal "classique" nous indiquait qu'utiliser seul des exemples génères ne suffirait pas pour obtenir un bon taux de détection sur les données réelles. Nous avons donc préférée utiliser notre temps restant a construire une meilleure base d'exemple en mixant données réelle et données générée, pour obtenir non seulement une meilleure variance, mais un \textit{dataset} plus proche de la réalité.
 \newpage
