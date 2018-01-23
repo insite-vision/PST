@@ -124,10 +124,10 @@
 
 	\newpage
 \section{Présentation}
-	\subsection{Description}%Enoncer clairement la problematique et mieux decrire le projet
-		InSite analyse et détecte des objets archéologiques dans des relevés géomagnétiques, en utilisant des techniques novatrices dans le domaine de
-		la Computer Vision, ainsi que de l'apprentissage automatique.
-
+	\subsection{Description}%Enoncer clairement la problematique et mieux decrire le proje
+		Notre projet consiste a utiliser des cartes de releves geo-magnetiques de zones archeologiques, et d'utiliser des techniques d'analyse informatise des images, ainsi que des systeme d'apprentissage machine pour detecter et classifier des objets et structures archeologiques comme par exemple des fours, tombes, ou objets metalliques. 
+		Cette detection automatique permettra aux archeologues travaillant sur le terrain d'avoir une meilleure vision sur la repartition et la structure des sites archeologiques, et donnera la possibilite de produire de meilleures analyses sur ces cartes, tant au niveau precision, qu'au niveau de la vitesse.
+		
 		\subsubsection{Genèse du projet}
 		L'idée d'appliquer des techniques d'analyse d'image à des relevés archéologiques est née lors du stage ouvrier de Martin OLIVIER, ou il a pu travailler quelques jours sur le chantier école de Marsal en Lorraine, dirige par Laurent OLIVIER, qui utilise de manière extensive les relevés géophysiques, que ce soit avec la magnétométrie, ou le radar de sol, ou le LIDAR. Bien que très avance techniquement, ces relevés était toujours analyse de manière "manuelle", avec un archéologue annotant a la main toutes les parties de la carte ou des objets/structures se situent. Un des inconvénient de cette approche est qu'elle ne permet pas d'avoir une bonne objectivité sur les éléments de l'image; la détection se base sur quelques critères comme par exemple la linéarité/ponctualité ou la puissance du signal, mais il s'agit ultimement de l'approche personnelle de l'observateur. En créant un système analysant chaque cartes de l'exacte même façon, on peut mieux comparer et construire des statistiques sur ces relevés. Martin a donc propose d'apporter ses connaissances en matière de traitement informatise aux images, et de construire une approche plus structure de l'analyse.
 
@@ -142,7 +142,7 @@
 			\item Analyse plus objective (ne dépend plus de la personne qui lit l'image)
 		\end{itemize}
 		Et, dans le cas où l'automatisation ne serait pas possible, proposer des données plus lisibles, en atténuant les parties non pertinentes (comme le bruit, par exemple).
-		{TODO: rajouter illustrations}
+
 
 	\subsection{Objectifs}%Il faut hierarchiser les objectifs et les replacer dans le contexte + SMART
 	Nous cherchons à:
@@ -158,10 +158,9 @@
 	\subsection{Budget}
 	Étant d'abord et surtout un projet de recherche d'informatique, InSite ne requiert pas de budget. Nous avons pu obtenir les relevés magnéto-métrique sans coût, et les ressources nécessaires pour mener à bien ce projet sont déjà à notre disposition. 
 	\subsection{Organisation}
-	InSite se compose de 2 étudiants, Fabien GOGLIO et Martin OLIVIER. Par cette taille réduite, l'organisation est simplifiée. Les rôles sont distribue selon l'intérêt de pour la tache, et selon sa compétence a mener cette tache a bien. Les recherches sur les techniques a utiliser, et le développement d'outil et de code sont faites de manières indépendantes, même si une communication constante est faite. 
+	InSite se compose de 2 étudiants, Fabien GOGLIO et Martin OLIVIER. Par cette taille réduite, l'organisation est simplifiée: un chef de projet n'est pas necessaire, et nous cherchons simplement a repartir les taches par interet. Nous developpons les outils et ecrivons le code de maniere independante, car celui ci est en general assez court (50-70 lignes de code en moyenne) pour pouvoir n'etre le travail que d'une seule personne. Le travail de recherche et de compilation des sources est egalement fait de maniere independante. Cependant, nous communicons de maniere constante et nous veillons a partager notre travail de maniere reguliere.   
 	\subsubsection{Démarche}
-	Comme inSite est un projet non pas de développement, mais de recherche, nous utilisons une démarche différentes de celle trouve habituellement dans les PST: nous passons une grande partie de notre temps a faire des recherches, et nous n'écrivons que des petits scripts, qui répondent a une tache particulière. Par exemple, l'application de l'algorithme de Canny, pour la détection de bords sur les relevés,
-	ou le découpage des cartes en carres pour l'analyse. Quelques exemples sont disponibles en Annexe %Rajouter canny.py et CutImage.py en annexe
+	Comme inSite est un projet non pas de développement, mais de recherche, nous utilisons une démarche différentes de celle trouve habituellement dans les PST: nous passons une grande partie de notre temps a faire des recherches, et nous n'écrivons que des petits scripts, qui répondent a une tache particulière. Par exemple, l'application de l'algorithme de Canny, pour la détection de bords sur les relevés, ou le découpage des cartes en carres pour l'analyse. Quelques exemples sont disponibles en Annexe. Nous voulons d'abord obtenir une connaissance sur la mise en oeuvre de methode de traitement informatise de releves geophysiques. Par consequent, nous ne construisons pas de "produit", mais un ensemble de connaissance, qui sera transmis a travers des rapports comme celui ci, mais aussi par la mise a disponibilite a tous de notre travail.
 	\subsection{Planning}
 	Un planning definitif est difficile a mettre en place pour une activite de recherche, car les resultats obtenu peuvent grandement affecter la facon dont nous repartissons le travail, et les problematiques que nous cherchons a resoudre. Cependant, on peut avoir une idee generale du planning et de la repartition des taches dans le temps. Un diagramme de Gantt est une excellente facon de voir cette repartition :
 \newpage
@@ -196,6 +195,23 @@
 	\clearpage
 	}
 	\subsubsection{Dates Clefs}
+
+	\subsection{Gestion des risques}
+	Nous definissons un risques par un aleas pouvant nous ralentir ou nous empecher d'atteindre nos objectifs. Sachant que nous avons une demarche de recherche, et non pas de developpement d'un produit, defini par un cahier des taches, ces risques sont differents. Il est en effet possible que le projet se deroule sans problemes, mais que nous parvenions pas a atteindre nos objectifs, parce qu'ils ne peuvent pas l'etre, dans l'etat actuel des connaissances. 
+	Cependant des risques subsident, risque que nous avons tenter de minimiser par les solutions suivantes: 
+	\begin{table}[]
+		\centering
+		\caption{My caption}
+		\label{my-label}
+		\begin{tabular}{ll}
+			\hline
+			\multicolumn{1}{|l|}{Probleme}                & \multicolumn{1}{l|}{Solution}                                                                     \\ \hline
+			\multicolumn{1}{|l|}{Versioning}              & \multicolumn{1}{l|}{Utilisation de GitHub}                                                        \\ \hline
+			\multicolumn{1}{|l|}{Sauvegarde des donnees}  & \multicolumn{1}{l|}{Utilisations de plusieurs backups} \\ \hline
+			\multicolumn{1}{|l|}{Manque de connaissances} & \multicolumn{1}{l|}{Mise en place d'un creneau dedie a la recherche}                              \\ \hline
+			                                              &                                                                                                  
+		\end{tabular}
+	\end{table}
 	\subsection{Langages et technologies utilisées}
 	Pour simplifier le développement, nous utilisons Python2 avec les librairies numpy, pyplot, cv2, qui possèdent de nombreuse fonctions mathématique et d'analyse d'image déjà implémentées.
 	\newpage
