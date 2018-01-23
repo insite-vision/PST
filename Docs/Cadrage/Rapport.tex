@@ -125,8 +125,8 @@
 	\newpage
 \section{Présentation}
 	\subsection{Description}%Enoncer clairement la problematique et mieux decrire le proje
-		Notre projet consiste a utiliser des cartes de releves geo-magnetiques de zones archeologiques, et d'utiliser des techniques d'analyse informatise des images, ainsi que des systeme d'apprentissage machine pour detecter et classifier des objets et structures archeologiques comme par exemple des fours, tombes, ou objets metalliques. 
-		Cette detection automatique permettra aux archeologues travaillant sur le terrain d'avoir une meilleure vision sur la repartition et la structure des sites archeologiques, et donnera la possibilite de produire de meilleures analyses sur ces cartes, tant au niveau precision, qu'au niveau de la vitesse.
+		Notre projet consiste a utiliser des cartes de relevés géomagnétiques de zones archéologiques, et d'utiliser des techniques d'analyse informatise des images, ainsi que des systèmes d'apprentissage machine pour détecter et classifier des objets et structures archéologiques comme par exemple des fours, tombes, ou objets métalliques. 
+		Cette détection automatique permettra aux archéologues travaillant sur le terrain d'avoir une meilleure vision sur la répartition et la structure des sites archéologiques, et donnera la possibilité de produire de meilleures analyses sur ces cartes, tant au niveau précision, qu'au niveau de la vitesse.
 		
 		\subsubsection{Genèse du projet}
 		L'idée d'appliquer des techniques d'analyse d'image à des relevés archéologiques est née lors du stage ouvrier de Martin OLIVIER, ou il a pu travailler quelques jours sur le chantier école de Marsal en Lorraine, dirige par Laurent OLIVIER, qui utilise de manière extensive les relevés géophysiques, que ce soit avec la magnétométrie, ou le radar de sol, ou le LIDAR. Bien que très avance techniquement, ces relevés était toujours analyse de manière "manuelle", avec un archéologue annotant a la main toutes les parties de la carte ou des objets/structures se situent. Un des inconvénient de cette approche est qu'elle ne permet pas d'avoir une bonne objectivité sur les éléments de l'image; la détection se base sur quelques critères comme par exemple la linéarité/ponctualité ou la puissance du signal, mais il s'agit ultimement de l'approche personnelle de l'observateur. En créant un système analysant chaque cartes de l'exacte même façon, on peut mieux comparer et construire des statistiques sur ces relevés. Martin a donc propose d'apporter ses connaissances en matière de traitement informatise aux images, et de construire une approche plus structure de l'analyse.
@@ -156,23 +156,23 @@
 
 \section{Cadrage}
 	\subsection{Budget}
-	Étant d'abord et surtout un projet de recherche d'informatique, InSite ne requiert pas de budget. Nous avons pu obtenir les relevés magnéto-métrique sans coût, et les ressources nécessaires pour mener à bien ce projet sont déjà à notre disposition. 
+	Étant d'abord et surtout un projet de recherche d'informatique, InSite ne requiert pas de budget. Nous avons pu obtenir les relevés magnéto métrique sans coût, et les ressources nécessaires pour mener à bien ce projet sont déjà à notre disposition. 
 	\subsection{Organisation}
-	InSite se compose de 2 étudiants, Fabien GOGLIO et Martin OLIVIER. Par cette taille réduite, l'organisation est simplifiée: un chef de projet n'est pas necessaire, et nous cherchons simplement a repartir les taches par interet. Nous developpons les outils et ecrivons le code de maniere independante, car celui ci est en general assez court (50-70 lignes de code en moyenne) pour pouvoir n'etre le travail que d'une seule personne. Le travail de recherche et de compilation des sources est egalement fait de maniere independante. Cependant, nous communiquons de maniere constante et nous veillons a partager notre travail de maniere reguliere.   
+	InSite se compose de 2 étudiants, Fabien GOGLIO et Martin OLIVIER. Par cette taille réduite, l'organisation est simplifiée: un chef de projet n'est pas nécessaire car nous cherchons simplement a repartir les taches par intérêt. Nous développons les outils et écrivons le code de manière indépendante, car celui ci est en général assez court (50-70 lignes de code en moyenne) pour pouvoir n'être le travail que d'une seule personne. Le travail de recherche et de compilation des sources est également fait de manière indépendante. Cependant, nous communiquons de constamment et nous veillons a partager notre travail régulièrement.   
 	\subsubsection{Démarche}
-	Comme inSite est un projet non pas de développement, mais de recherche, nous utilisons une démarche différentes de celle trouve habituellement dans les PST: nous passons une grande partie de notre temps a faire des recherches, et nous n'écrivons que des petits scripts, qui répondent a une tache particulière. Par exemple, l'application de l'algorithme de Canny, pour la détection de bords sur les relevés, ou le découpage des cartes en carres pour l'analyse. Quelques exemples sont disponibles en Annexe. Nous voulons d'abord obtenir une connaissance sur la mise en oeuvre de methode de traitement informatise de releves geophysiques. Par consequent, nous ne construisons pas de "produit", mais un ensemble de connaissance, qui sera transmis a travers des rapports comme celui ci, mais aussi par la mise a disponibilite a tous de notre travail.
+	Comme inSite est un projet non pas de développement, mais de recherche, nous utilisons une démarche différentes de celle trouve habituellement dans les PST: nous passons une grande partie de notre temps a faire des recherches, et nous n'écrivons que des petits scripts, qui répondent a une tache particulière. Par exemple, l'application de l'algorithme de Canny, pour la détection de bords sur les relevés, ou le découpage des cartes en carres pour l'analyse. Quelques exemples sont disponibles en Annexe. Nous voulons d'abord obtenir une connaissance sur la mise en œuvre de méthodes de traitements informatisée de relevés géophysiques. Par conséquent, nous ne construisons pas de "produit", mais un ensemble de connaissance, qui sera transmis a travers de rapports comme celui ci, mais aussi par la mise a disponibilité a tous de notre travail.
 	\subsection{Planning}
-	Un planning definitif est difficile a mettre en place pour une activite de recherche, car les resultats obtenu peuvent grandement affecter la facon dont nous repartissons le travail, et les problematiques que nous cherchons a resoudre. Cependant, on peut avoir une idee generale du planning et de la repartition des taches dans le temps. Un diagramme de Gantt est une excellente facon de voir cette repartition : voir annexe.
+	Un planning définitif est difficile a mettre en place pour une activité de recherche, car les résultats obtenu peuvent grandement affecter la façon dont nous répartissons le travail, et les problématiques que nous cherchons a résoudre. Cependant, on peut avoir une idée générale du planning et de la répartition des taches dans le temps. Un diagramme de Gantt est une excellente façon de voir cette répartition : voir annexe.
 \newpage
 	\subsection{Gestion des risques}
-	Un risques est un aleas qui contreviendrait a l'atteinte de nos objectifs. Ces risques dependent bien entendu du type de projet que nous cherchons a entreprendre, et un projet de recherche pose des problematiques differentes de celles d'un projet ou l'on cherche a construire un produit. Cependant il est important de pouvoir analyser ces risques pour pouvoir tenter de les mitiger. 
+	Un risques est un aléas qui contreviendrait a l'atteinte de nos objectifs. Ces risques dépendent bien entendu du type de projet que nous cherchons a entreprendre, et un projet de recherche pose des problématiques différentes de celles d'un projet ou l'on cherche a construire un produit. Cependant il est important de pouvoir analyser ces risques pour pouvoir tenter de les mitiger. 
 \begin{table}[ht]
 	\centering
 	\caption{Tableaux de mitigation des risques}
 	\label{my-label}
 	\begin{tabular}{l|l|l|l|}
 		\cline{2-4}
-		& Importance & Probabilite & Solutions                                 \\ \hline
+		& Importance & Portabilité & Solutions                                 \\ \hline
 		\multicolumn{1}{|l|}{Perte de donnees}       & Eleve      & Faible      & Utilisation de multiples backups          \\ \hline
 		\multicolumn{1}{|l|}{Versionning}            & Faible     & Moyenne     & Utilisation de git                        \\ \hline
 		\multicolumn{1}{|l|}{Manque de connaissance} & Moyenne    & Moyenne     & \begin{tabular}[c]{@{}l@{}}Amenagement de temps\\  dedie a la recherche\end{tabular}\\ \hline
@@ -185,73 +185,54 @@
 \section{Démarche Initiale}
 
 	\subsection{Relevés géomagnétiques}
-	Les relevés géomagnétiques sont utilisés en archéologie depuis une vingtaine d'années. Ils permettent notamment d'obtenir une idée de la répartition d'objets et structures archéologiques. En archeologie, on utilise habituellement un gradiometre avec des capteurs \textit{fluxgate}. Un gradiometre mesure la differences de la mesure de deux capteurs. Les \textit{fluxgate} sont frequement utilise cars ils sont peu cher, facilement miniaturisable et donne une bonne precision.
+	Les relevés géomagnétiques sont utilisés en archéologie depuis une vingtaine d'années. Ils permettent notamment d'obtenir une idée de la répartition d'objets et structures archéologiques. En archéologie, on utilise habituellement un gradiomètre avec des capteurs \textit{fluxgate}. Un gradiomètre mesure la différence de la mesure de deux capteurs. Les \textit{fluxgate} sont fréquemment utilisées cars ils sont peu cher, facilement miniaturisa blé et donne une bonne précision.
 
-	Un \textit{fluxgate} fonctionne en induisant un champs magnetique en faisant passer un courant electrique dans un fil entourant un metal conducteur. En inversant la polarite de ce courant rapidement, on inverse egalement la direction du champs magnetique, et le champs n'as en moyenne plus de direction.
+	Un \textit{fluxgate} fonctionne en induisant un champs magnétique en faisant passer un courant électrique dans un fil entourant un matériel conducteur. En inversant la polarité de ce courant rapidement, on inverse également la direction du champs magnétique, et le champs n'as en moyenne plus de direction.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=\textwidth, height=0.9\textheight, keepaspectratio]{FluxgateDiagram.jpg}
 		\caption{Diagramme d'un fluxgate, image du Imperial College of London}. 
 		\label{fig:FluxDiag}
 	\end{figure}
-	Lorsqu'un champs magnetique exterieur est introduit, la direction du champs sera modifie, proportionnellement a l'amplitude du champs exterieur. Ce champs induira une tension dans un fil secondaire, que l'on mesure et qui nous donnera une indication sur l'amplitude du champs magnetique present a cet endroit sur un plan. En placant plusieurs de ces capteurs sur differents plan, on peut meme connaitre l'amplitude du champs en 3 dimensions. Sur la figure \ref{fig:FluxPlot}, on peut y voir comment l'ajout d'un champs magnetique exterieur affecte le champs magnetique du \textit{fluxgate}
+	Lorsqu'un champs magnétique extérieur est introduit, la direction du champs sera modifie, proportionnellement a l'amplitude du champs extérieur. Ce champs induira une tension dans un fil secondaire, que l'on mesure et qui nous donnera une indication sur l'amplitude du champs magnétique présent a cet endroit sur un plan. En plaquant plusieurs de ces capteurs sur différents plans, on peut même connaitre l'amplitude du champs en 3 dimensions. Sur la figure \ref{fig:FluxPlot}, on peut y voir comment l'ajout d'un champs magnétique extérieur affecte le champs magnétique du \textit{fluxgate}
 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=\textwidth, height=0.9\textheight, keepaspectratio]{FluxgatePlot.jpg}
-		\caption{Graphe des formes de l'onde pour un demi-coeur, les deux demi-coeurs, les deux demi-coeurs avec un champs magnetique exterieur, et la tension induite dans le fil secondaire, image du Imperial College of London}. 
+		\caption{Graphe des formes de l'onde pour un demi-coeur, les deux demi-coeurs, les deux demi-coeurs avec un champs magnétique extérieur, et la tension induite dans le fil secondaire, image du Imperial College of London}. 
 		\label{fig:FluxPlot}
 \end{figure}
 
-		Une prise releves se fait en delimitant d'abord la zone en carres, dont les coordoonnes GPS sont prise. Un operateur, portant un le gradiometre fera un allez sur une longeur de generalement environ 25m, selon la zone a mesure, se decallera d'1M puis retournera sur l'axe de depart. Une zone de 25x25m est couverte en environ 45 minutes.
+		Une prise de relevés se fait en délimitant d'abord la zone en carres, dont les coordonnes GPS sont prise. Un opérateur, portant le gradiomètre fera un allez sur une longueur de généralement environ 25m, selon la zone a mesure, se décalera d'un mètre puis retournera sur l'axe de départ. Une zone de 25x25m est couverte en environ 45 minutes.
 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=12cm]{MagnetoMetre.jpeg}
-		\caption{Personne prenant des releves geophysique avec un gradiometre. On y voit les deux capteurs. Image de Wikipedia\cite{WikiGrad}}
+		\caption{Personne prenant des relevés géophysique avec un gradiomètre. On y voit les deux capteurs. Image de Wikipedia\cite{WikiGrad}}
 		\label{fig:Magnetometre}
 \end{figure}
 %Schema + Explication du principe
 	On construit ensuite des cartes en noir et blanc, représentant les variations du champs magnétique par une variation de niveau de gris. Une valeur positive forte sera blanche, tandis qu'une valeur négative forte sera noire. Ces relevés permettent de détecter des structures et objet enfouis jusqu'à quelques mètres de profondeur. En effet lorsque l'on construit, ou lorsque l'on fait cuire a l'aide de fours, on modifie les valeurs de champs magnétiques du terrain, et ces variations peuvent être observe. Ces relevés, mesurant le magnétisées du sol sont également très sensible aux objets métalliques, et le sont d'autant plus que ces objets sont proche du capteur, ce qui peux poser problèmes dans les zones ou une activité anthropologique récente a une lieu, car l'homme moderne rejette beaucoup de déchet métalliques. Ces objets métalliques contemporains sont des dipôles et provoquent sur les relevés des anomalies très caractéristiques. Nous discuterons de ces anomalies plus bas.
 
-	\subsection{Origine de notre corpus de donnees et contexte historique}
-
-	Nos relevés nous proviennent tous du site archéologique de Marsal, en Moselle, et ont été réalisés au cours d'une quinzaine d'année, lors de la campagne de fouille de Laurent OLIVIER.%TODO: CONTEXTUALISER%
-	. Cette région possède des marais salants, et on trouve des traces d'une exploitation industrielle très importante aux alentours de l'age du Fer (VII\textsuperscript{ème}-I\textsuperscript{ème} siècle avant J.C). On trouve des traces de ces exploitations avec par exemple une quantité extrêmement élevée de briquetage (déchets de terre cuite, utilise pour la cuisson de la saumure); ce n'est pas moins de 4 millions de mètres cube de briquetage accumule dans la région, soit presque deux fois le volume de la pyramide de Kheops. Le sel était, et a longtemps été une ressource stratégique; car en plus de servir d'épice, le sel est utilise dans la conservation d'aliments, et les populations agricultrice, qui consomme moins de viande doivent supplémenter leur apport par du sel. La région a donc été très riche par le passe. 
-	L'utilisation de releves geophysique dans la campagne de fouille a permis de mettre en evidence l'aspect structure des sites d'ateliers du briquetage, que l'ont pensait jusqu'ici comme des "depotoirs" pour des dechets de productions.  
-
 \begin{figure}[H]
 	\centering
 		\includegraphics[width =\textwidth]{ExempleMap.jpg}
-		\caption{Exemple d'une carte geophysique de la region de Marsal du secteur "La Banvoire" et "Pransieu". On peut y voir une concentration d'anomalie ordonnee. Il s'agit d'atelier de briquetage.}
+		\caption{Exemple d'une carte géophysique de la région de Marsal du secteur "La Banvoire" et "Pransieu". On peut y voir une concentration d'anomalie ordonnées. Il s'agit d'atelier de briquetage.}
 		\label{fig:ExempleMap}
 \end{figure}
 
-%Schema + Explication du principe
-	On construit ensuite des cartes en noir et blanc, représentant les variations du champs magnétique par une variation de niveau de gris. Une valeur positive forte sera blanche, tandis qu'une valeur négative forte sera noire. Ces relevés permettent de détecter des structures et objet enfouis jusqu'à quelques mètres de profondeur. En effet lorsque l'on construit, ou lorsque l'on fait cuire a l'aide de fours, on modifie les valeurs de champs magnétiques du terrain, et ces variations peuvent être observe. Ces relevés, mesurant le magnétisées du sol sont également très sensible aux objets métalliques, et le sont d'autant plus que ces objets sont proche du capteur, ce qui peux poser problèmes dans les zones ou une activité anthropologique récente a une lieu, car l'homme moderne rejette beaucoup de déchet métalliques. Ces objets métalliques contemporains sont des dipôles et provoquent sur les relevés des anomalies très caractéristiques. Nous discuterons de ces anomalies plus bas.
+	\subsection{Origine de notre corpus de données et contexte historique}
 
-	\subsection{Origine de notre corpus de donnees et contexte historique}
-
-	Nos relevés nous proviennent tous du site archéologique de Marsal, en Moselle, et ont été réalisés au cours d'une quinzaine d'année, lors de la campagne de fouille de Laurent OLIVIER.%TODO: CONTEXTUALISER%
+	Nos relevés nous proviennent tous du site archéologique de Marsal, en Moselle, et ont été réalisés au cours d'une quinzaine d'année, lors de la campagne de fouille de Laurent OLIVIER, et on ete realise par l'entreprise Posselt \& Zickgraf Prospektionen\cite{ArcheoGeo} %TODO: CONTEXTUALISER%
 	. Cette région possède des marais salants, et on trouve des traces d'une exploitation industrielle très importante aux alentours de l'age du Fer (VII\textsuperscript{ème}-I\textsuperscript{ème} siècle avant J.C). On trouve des traces de ces exploitations avec par exemple une quantité extrêmement élevée de briquetage (déchets de terre cuite, utilise pour la cuisson de la saumure); ce n'est pas moins de 4 millions de mètres cube de briquetage accumule dans la région, soit presque deux fois le volume de la pyramide de Kheops. Le sel était, et a longtemps été une ressource stratégique; car en plus de servir d'épice, le sel est utilise dans la conservation d'aliments, et les populations agricultrice, qui consomme moins de viande doivent supplémenter leur apport par du sel. La région a donc été très riche par le passe. 
-	L'utilisation de releves geophysique dans la campagne de fouille a permis de mettre en evidence l'aspect structure des sites d'ateliers du briquetage, que l'ont pensait jusqu'ici comme des "depotoirs" pour des dechets de productions.  
+	L'utilisation de relevés géophysique dans la campagne de fouille a permis de mettre en évidence l'aspect structure des sites d'ateliers du briquetage, que l'ont pensait jusqu'ici comme des "dépotoirs" pour des déchets de productions. \cite{ArcheoLabo} 
 
 \begin{figure}[H]
 	\centering
 		\includegraphics[width =\textwidth]{Four.jpg}
-		\caption{Exemple typique d'un four destine a cuir de la saumure. La forme en "U" est caracteristique et est visible sur les releves.}
+		\caption{Exemple typique d'un four destine a cuire de la saumure. La forme en "U" est caracteristique et est visible sur les releves.}
 		\label{fig:ExempleFour}
 \end{figure}
-
-%Schema + Explication du principe
-	On construit ensuite des cartes en noir et blanc, représentant les variations du champs magnétique par une variation de niveau de gris. Une valeur positive forte sera blanche, tandis qu'une valeur négative forte sera noire. Ces relevés permettent de détecter des structures et objet enfouis jusqu'à quelques mètres de profondeur. En effet lorsque l'on construit, ou lorsque l'on fait cuire a l'aide de fours, on modifie les valeurs de champs magnétiques du terrain, et ces variations peuvent être observe. Ces relevés, mesurant le magnétisées du sol sont également très sensible aux objets métalliques, et le sont d'autant plus que ces objets sont proche du capteur, ce qui peux poser problèmes dans les zones ou une activité anthropologique récente a une lieu, car l'homme moderne rejette beaucoup de déchet métalliques. Ces objets métalliques contemporains sont des dipôles et provoquent sur les relevés des anomalies très caractéristiques. Nous discuterons de ces anomalies plus bas.
-	
-	\newpage
-	\subsection{Origine de notre corpus de donnees et contexte historique}
-
-	Nos relevés nous proviennent tous du site archéologique de Marsal, en Moselle, et ont été réalisés au cours d'une quinzaine d'année, lors de la campagne de fouille de Laurent OLIVIER.%TODO: CONTEXTUALISER%
-	. Cette région possède des marais salants, et on trouve des traces d'une exploitation industrielle très importante aux alentours de l'age du Fer (VII\textsuperscript{ème}-I\textsuperscript{ème} siècle avant J.C). On trouve des traces de ces exploitations avec par exemple une quantité extrêmement élevée de briquetage (déchets de terre cuite, utilise pour la cuisson de la saumure); ce n'est pas moins de 4 millions de mètres cube de briquetage accumule dans la région, soit presque deux fois le volume de la pyramide de Kheops. Le sel était, et a longtemps été une ressource stratégique; car en plus de servir d'épice, le sel est utilise dans la conservation d'aliments, et les populations agricultrice, qui consomme moins de viande doivent supplémenter leur apport par du sel. La région a donc été très riche par le passe. 
-	L'utilisation de releves geophysique dans la campagne de fouille a permis de mettre en evidence l'aspect structure des sites d'ateliers du briquetage, que l'ont pensait jusqu'ici comme des "depotoirs" pour des dechets de productions.  
 
 	\newpage
 	\newpage
@@ -485,8 +466,7 @@ Un aspect intéressant de ce problème est, bien que si les dipôles produit par
 	\end{figure}
 
 	\subsubsection{Explication de l'approche}
-	Les réseaux de convolution sont une innovation récente dans le champs de l'apprentissage automatique. Le premier exemple d'un réseau de convolution moderne provient de Yann Le Cun \cite{lecun-01a} en 1998. En 2012, les réseaux de convolution réapparaitront avec AlexNet \cite{NIPS2012_4824}, et restent aujourd'hui sur le devant de la scène de l'apprentissage automatique. 
-	Les réseaux de convolutions, que nous appellerons CNNs (Convolutionnal Neural Network) se composent de 2 parties
+	Les réseaux de convolution sont une innovation récente dans le champs de l'apprentissage automatique. Le premier exemple d'un réseau de convolution moderne provient de Yann Le Cun \cite{lecun-01a} en 1998. En 2012, les réseaux de convolution réapparaitront avec AlexNet \cite{NIPS2012_4824}, et restent aujourd'hui sur le devant de la scène de l'apprentissage automatique. Ils sont particulièrement adapte a l'analyse d'image car ils appliquent une suite de filtres déterminant au fur et a mesure les caractéristiques de l'image. 
 	
 	\newpage
 	\subsubsection{Problèmes initiaux}
@@ -517,8 +497,8 @@ Un aspect intéressant de ce problème est, bien que si les dipôles produit par
 	%TODO: Rajouter exemple 3D Dipole Reel vs Dipole Genere
 	%TODO: Source image : Document PZP (Lieu)
 	\textbf{Traitement des images}:\\%Rajouter Schema explicatif
-	\indent Afin d'obtenir une meilleure qualité d'exemples nous avons utilise ceux provenant de nos données originelle. Nous avons d'abord découpe chacune des images en carre de taille 96*96 pixels; en décalant le carre de 48 pixels verticalement et horizontalement a chaque fois, nous pouvons obtenir encore plus d'exemples. En effet, decaller le carre de 48 pixels, revient a doubler le nombre de sous carre dans une ligne et dans une colonne. De plus, on cree des zones de 48x48 pixels. Chacune d'entre elles est recouverte au maximum 48 fois par des sous carres differents. 
-	Le choix d'un decallage de 48 pixels ne s'est pas fait de maniere completement arbitraire: il fallait que le decallage ne soit pas trop petit, car on risquait de produire une quantite phenomale de donnees inutile, mais si il etait trop grand, on risque de perdre de precieux dipoles qui pourrait etre place entre deux carres. 
+	\indent Afin d'obtenir une meilleure qualité d'exemples nous avons utilise ceux provenant de nos données originelle. Nous avons d'abord découpe chacune des images en carre de taille 96*96 pixels; en décalant le carre de 48 pixels verticalement et horizontalement a chaque fois, nous pouvons obtenir encore plus d'exemples. En effet, décaler le carre de 48 pixels, revient a doubler le nombre de sous carre dans une ligne et dans une colonne. De plus, on crée des zones de 48x48 pixels. Chacune d'entre elles est recouverte au maximum 48 fois par des sous carres différents. 
+	Le choix d'un décalage de 48 pixels ne s'est pas fait de manière complètement arbitraire: il fallait que le décalage ne soit pas trop petit, car on risquait de produire une quantité phénomène de données inutile car différenciant trop peu les une des autres, mais si il était trop grand, on risque de perdre de précieux dipôles qui pourrait être place entre deux carres. 
 
 Les relevés dont nous disposons n'ont pas tous une forme rectangulaire. En effet il s'agit de plusieurs zones rectangulaire ou des relevés ont été fait, avec des zones blanches ou il n'y pas de relevés. Ces zones sans relevés nous sont inutile. Pour ne pas avoir de carre sans relevés, nous avons colore les zones blanches en vert (voir la figure \cite{fig:ReleveColore} pour un exemple). Lors du découpage nous vérifions si notre image contient du vert (Notre vert est particulier car il contient un peu de rouge. Il s'agissait initialement d'une erreur). Si le carre contient du vert, cela veut dire qu'une partie, ou la totalité, du carre est une zone sans relevés.
 
@@ -531,19 +511,19 @@ Les relevés dont nous disposons n'ont pas tous une forme rectangulaire. En effe
 
 Au final, nous avons pu obtenir plus de 51000 carres, grâce au fait que les images était très grande (souvent plus de 2000*2000 pixels). Nous avons ensuite, a la main, trouve tous les carres contenant un dipôles, ce qui nous donne 413 images de dipôles. Ces images, provenant du monde réelle sont très variée, que ce soit par leur taille, leur position dans l'image ou encore leur nombre.
 
-	Cependant, 400 images n'est toujours pas suffisant pour entrainer un réseau, et nous devons enrichir notre corpus, c'est a dire creer de nouveaux exemples a partir d'exemples pre-existant. Les objets que nous cherchons sont (en simplifiant) compose de formes circulaire imbrique. En appliquant des transformations, nous esperons creer des images differentes de celles originelle, mais gardant les concepts de l'image. Nous pouvons donc creer un nombre important de nouveaux exemples en appliquant quelques transformations simples. A l'heure ou nous écrivons ces lignes, nous avons implémenté les transformations suivantes :
+	Cependant, 400 images n'est toujours pas suffisant pour entrainer un réseau, et nous devons enrichir notre corpus, c'est a dire créer de nouveaux exemples a partir d'exemples préexistant. Les objets que nous cherchons sont (en simplifiant) compose de formes circulaire imbrique. En appliquant des transformations, nous espérons créer des images différentes de celles originelle, mais gardant les concepts de l'image. Nous pouvons donc créer un nombre important de nouveaux exemples en appliquant quelques transformations simples. A l'heure ou nous écrivons ces lignes, nous avons implémenté les transformations suivantes :
 	\begin{itemize}
-		\item Reflection de l'image sur l'axe x %Schema pour chacun de ces transfo
-		\item Reflection de l'image sur l'axe y 
+		\item Réflection de l'image sur l'axe x %Schema pour chacun de ces transfo
+		\item Réflection de l'image sur l'axe y 
 		\item Rotation l'image sur par un angle $\theta$ avec $1/2\pi < \theta < 3/2\pi$  
 	\end{itemize}
-Pour ne pas obtenir plusieurs fois la meme images, nous avons etudie la symetrie de groupe de nos images: nous avons 5 transformations disponibles: 
+Pour ne pas obtenir plusieurs fois la même images, nous avons étudié la symétrie de groupe de nos images: nous avons 5 transformations disponibles: 
 	\begin{itemize}
 		\item Rotation de $1/2\pi$ $\pi$ $3/2\pi$
-		\item Reflection sur l'axe x ou y
+		\item Réflection sur l'axe x ou y
 	\end{itemize}
-	En appliquant une seule transformation sur l'image originelle on obtient cinq images distinctes. On peut en obtenir deux de plus en appliquant deux tranformations (une rotation et une reflection) sur l'image originelle. On obtient donc huit images distinctes, en comptant l'image originelle. Si on tente d'appliquer plus de deux transformations, on a une symetrie et on retrouve une des images deja obtenue.
-	En appliquant ces 7 operations, on obtient donc $7*413 = 2891$ images.  
+	En appliquant une seule transformation sur l'image originelle on obtient cinq images distinctes. On peut en obtenir deux de plus en appliquant deux transformations (une rotation et une réflection) sur l'image originelle. On obtient donc huit images distinctes, en comptant l'image originelle. Si on tente d'appliquer plus de deux transformations, on a une symétrie et on retrouve une des images déjà obtenue.
+	En appliquant ces 7 opérations, on obtient donc $7*413 = 2891$ images.  
 	\begin{figure}[H]
 		\centering
 		\begin{subfigure}[t]{0.3\linewidth}
@@ -583,7 +563,7 @@ Pour ne pas obtenir plusieurs fois la meme images, nous avons etudie la symetrie
 				\caption{Quelques exemples de dipôles, récupéré sur plusieurs relevés différents. On peut observer leur similitudes, tant par leur formes que par leur tailles}
 		\label{fig:DipoleExample}
 	\end{figure}
-Nous pouvons encore ajouter un certains nombre d'exemples en decoupant une zone de taille moyenne contenant un ou plusieurs dipoles, mais avec un decallage beaucoup plus petit, ce qui nous epargnerait d'obtenir un grand nombre d'exemples sans dipoles. En effet pour rappel, le pourcentage d'image avec un dipole dans notre corpus etait d'initalement de 0.8\%. Avec l'enrichissement nous obtenons plus de 5.88\%, ce qui est une grande amelioration.
+Nous pouvons encore ajouter un certains nombre d'exemples en découpant une zone de taille moyenne contenant un ou plusieurs dipôles, mais avec un décalage beaucoup plus petit, ce qui nous épargnerait d'obtenir un grand nombre d'exemples sans dipôles. En effet pour rappel, le pourcentage d'image avec un dipôle dans notre corpus était d initialement de 0.8\%. Avec l'enrichissement nous obtenons plus de 5.88\%, ce qui est une grande amélioration.
 
 	\textbf{Implémentation Réseau Neuronal}\\
 	\indent Nous avons implémenté un réseau neuronal classique s'entrainant sur des exemples générés. Le réseau reprends l'architecture de l'exemple de TensorFlow pour la classification de chiffres manuscrit avec une modification du nombre d'entrée pour s'adapter a la taille des exemples générés. Lors de l'entrainement, on a pu observer une très rapide maximisation du taux de détection, arrivant a un taux de réussite de 100\% sur les exemples de test en 4 époques. Nous avons ensuite tente d'appliquer ce réseau sur une carte, dans l'espoir de créer une \textit{heatmap} d'activation du réseau. Malheureusement, ce réseau possédait un taux d'erreur très élevé sur les exemples réels. Nous ne possédions pas le temps d'implémenter un réseau neuronal de convolution, et les résultats obtenu avec le réseau neuronal "classique" nous indiquait qu'utiliser seul des exemples génères ne suffirait pas pour obtenir un bon taux de détection sur les données réelles. Nous avons donc préférée utiliser notre temps restant a construire une meilleure base d'exemple en mixant données réelle et données générée, pour obtenir non seulement une meilleure variance, mais un \textit{dataset} plus proche de la réalité.
