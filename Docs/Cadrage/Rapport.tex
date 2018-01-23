@@ -158,7 +158,7 @@
 	\subsection{Budget}
 	Étant d'abord et surtout un projet de recherche d'informatique, InSite ne requiert pas de budget. Nous avons pu obtenir les relevés magnéto-métrique sans coût, et les ressources nécessaires pour mener à bien ce projet sont déjà à notre disposition. 
 	\subsection{Organisation}
-	InSite se compose de 2 étudiants, Fabien GOGLIO et Martin OLIVIER. Par cette taille réduite, l'organisation est simplifiée: un chef de projet n'est pas necessaire, et nous cherchons simplement a repartir les taches par interet. Nous developpons les outils et ecrivons le code de maniere independante, car celui ci est en general assez court (50-70 lignes de code en moyenne) pour pouvoir n'etre le travail que d'une seule personne. Le travail de recherche et de compilation des sources est egalement fait de maniere independante. Cependant, nous communicons de maniere constante et nous veillons a partager notre travail de maniere reguliere.   
+	InSite se compose de 2 étudiants, Fabien GOGLIO et Martin OLIVIER. Par cette taille réduite, l'organisation est simplifiée: un chef de projet n'est pas necessaire, et nous cherchons simplement a repartir les taches par interet. Nous developpons les outils et ecrivons le code de maniere independante, car celui ci est en general assez court (50-70 lignes de code en moyenne) pour pouvoir n'etre le travail que d'une seule personne. Le travail de recherche et de compilation des sources est egalement fait de maniere independante. Cependant, nous communiquons de maniere constante et nous veillons a partager notre travail de maniere reguliere.   
 	\subsubsection{Démarche}
 	Comme inSite est un projet non pas de développement, mais de recherche, nous utilisons une démarche différentes de celle trouve habituellement dans les PST: nous passons une grande partie de notre temps a faire des recherches, et nous n'écrivons que des petits scripts, qui répondent a une tache particulière. Par exemple, l'application de l'algorithme de Canny, pour la détection de bords sur les relevés, ou le découpage des cartes en carres pour l'analyse. Quelques exemples sont disponibles en Annexe. Nous voulons d'abord obtenir une connaissance sur la mise en oeuvre de methode de traitement informatise de releves geophysiques. Par consequent, nous ne construisons pas de "produit", mais un ensemble de connaissance, qui sera transmis a travers des rapports comme celui ci, mais aussi par la mise a disponibilite a tous de notre travail.
 	\subsection{Planning}
@@ -194,9 +194,9 @@
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=\textwidth, height=0.9\textheight, keepaspectratio]{MagnetoMetre.jpeg}
+		\includegraphics[width=12cm]{MagnetoMetre.jpeg}
 		\caption{Personne prenant des releves geophysique avec un gradiometre. On y voit les deux capteurs. Image de Wikipedia\cite{WikiGrad}}
-		\label{fig:FluxPlot}
+		\label{fig:Magnetometre}
 \end{figure}
 %Schema + Explication du principe
 	On construit ensuite des cartes en noir et blanc, représentant les variations du champs magnétique par une variation de niveau de gris. Une valeur positive forte sera blanche, tandis qu'une valeur négative forte sera noire. Ces relevés permettent de détecter des structures et objet enfouis jusqu'à quelques mètres de profondeur. En effet lorsque l'on construit, ou lorsque l'on fait cuire a l'aide de fours, on modifie les valeurs de champs magnétiques du terrain, et ces variations peuvent être observe. Ces relevés, mesurant le magnétisées du sol sont également très sensible aux objets métalliques, et le sont d'autant plus que ces objets sont proche du capteur, ce qui peux poser problèmes dans les zones ou une activité anthropologique récente a une lieu, car l'homme moderne rejette beaucoup de déchet métalliques. Ces objets métalliques contemporains sont des dipôles et provoquent sur les relevés des anomalies très caractéristiques. Nous discuterons de ces anomalies plus bas.
@@ -207,6 +207,40 @@
 	. Cette région possède des marais salants, et on trouve des traces d'une exploitation industrielle très importante aux alentours de l'age du Fer (VII\textsuperscript{ème}-I\textsuperscript{ème} siècle avant J.C). On trouve des traces de ces exploitations avec par exemple une quantité extrêmement élevée de briquetage (déchets de terre cuite, utilise pour la cuisson de la saumure); ce n'est pas moins de 4 millions de mètres cube de briquetage accumule dans la région, soit presque deux fois le volume de la pyramide de Kheops. Le sel était, et a longtemps été une ressource stratégique; car en plus de servir d'épice, le sel est utilise dans la conservation d'aliments, et les populations agricultrice, qui consomme moins de viande doivent supplémenter leur apport par du sel. La région a donc été très riche par le passe. 
 	L'utilisation de releves geophysique dans la campagne de fouille a permis de mettre en evidence l'aspect structure des sites d'ateliers du briquetage, que l'ont pensait jusqu'ici comme des "depotoirs" pour des dechets de productions.  
 
+\begin{figure}[H]
+	\centering
+		\includegraphics[width =\textwidth]{ExempleMap.jpg}
+		\caption{Exemple d'une carte geophysique de la region de Marsal du secteur "La Banvoire" et "Pransieu". On peut y voir une concentration d'anomalie ordonnee. Il s'agit d'atelier de briquetage.}
+		\label{fig:ExempleMap}
+\end{figure}
+
+%Schema + Explication du principe
+	On construit ensuite des cartes en noir et blanc, représentant les variations du champs magnétique par une variation de niveau de gris. Une valeur positive forte sera blanche, tandis qu'une valeur négative forte sera noire. Ces relevés permettent de détecter des structures et objet enfouis jusqu'à quelques mètres de profondeur. En effet lorsque l'on construit, ou lorsque l'on fait cuire a l'aide de fours, on modifie les valeurs de champs magnétiques du terrain, et ces variations peuvent être observe. Ces relevés, mesurant le magnétisées du sol sont également très sensible aux objets métalliques, et le sont d'autant plus que ces objets sont proche du capteur, ce qui peux poser problèmes dans les zones ou une activité anthropologique récente a une lieu, car l'homme moderne rejette beaucoup de déchet métalliques. Ces objets métalliques contemporains sont des dipôles et provoquent sur les relevés des anomalies très caractéristiques. Nous discuterons de ces anomalies plus bas.
+
+	\subsection{Origine de notre corpus de donnees et contexte historique}
+
+	Nos relevés nous proviennent tous du site archéologique de Marsal, en Moselle, et ont été réalisés au cours d'une quinzaine d'année, lors de la campagne de fouille de Laurent OLIVIER.%TODO: CONTEXTUALISER%
+	. Cette région possède des marais salants, et on trouve des traces d'une exploitation industrielle très importante aux alentours de l'age du Fer (VII\textsuperscript{ème}-I\textsuperscript{ème} siècle avant J.C). On trouve des traces de ces exploitations avec par exemple une quantité extrêmement élevée de briquetage (déchets de terre cuite, utilise pour la cuisson de la saumure); ce n'est pas moins de 4 millions de mètres cube de briquetage accumule dans la région, soit presque deux fois le volume de la pyramide de Kheops. Le sel était, et a longtemps été une ressource stratégique; car en plus de servir d'épice, le sel est utilise dans la conservation d'aliments, et les populations agricultrice, qui consomme moins de viande doivent supplémenter leur apport par du sel. La région a donc été très riche par le passe. 
+	L'utilisation de releves geophysique dans la campagne de fouille a permis de mettre en evidence l'aspect structure des sites d'ateliers du briquetage, que l'ont pensait jusqu'ici comme des "depotoirs" pour des dechets de productions.  
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width =\textwidth]{Four.jpg}
+		\caption{Exemple typique d'un four destine a cuir de la saumure. La forme en "U" est caracteristique et est visible sur les releves.}
+		\label{fig:ExempleFour}
+\end{figure}
+
+%Schema + Explication du principe
+	On construit ensuite des cartes en noir et blanc, représentant les variations du champs magnétique par une variation de niveau de gris. Une valeur positive forte sera blanche, tandis qu'une valeur négative forte sera noire. Ces relevés permettent de détecter des structures et objet enfouis jusqu'à quelques mètres de profondeur. En effet lorsque l'on construit, ou lorsque l'on fait cuire a l'aide de fours, on modifie les valeurs de champs magnétiques du terrain, et ces variations peuvent être observe. Ces relevés, mesurant le magnétisées du sol sont également très sensible aux objets métalliques, et le sont d'autant plus que ces objets sont proche du capteur, ce qui peux poser problèmes dans les zones ou une activité anthropologique récente a une lieu, car l'homme moderne rejette beaucoup de déchet métalliques. Ces objets métalliques contemporains sont des dipôles et provoquent sur les relevés des anomalies très caractéristiques. Nous discuterons de ces anomalies plus bas.
+	
+	\newpage
+	\subsection{Origine de notre corpus de donnees et contexte historique}
+
+	Nos relevés nous proviennent tous du site archéologique de Marsal, en Moselle, et ont été réalisés au cours d'une quinzaine d'année, lors de la campagne de fouille de Laurent OLIVIER.%TODO: CONTEXTUALISER%
+	. Cette région possède des marais salants, et on trouve des traces d'une exploitation industrielle très importante aux alentours de l'age du Fer (VII\textsuperscript{ème}-I\textsuperscript{ème} siècle avant J.C). On trouve des traces de ces exploitations avec par exemple une quantité extrêmement élevée de briquetage (déchets de terre cuite, utilise pour la cuisson de la saumure); ce n'est pas moins de 4 millions de mètres cube de briquetage accumule dans la région, soit presque deux fois le volume de la pyramide de Kheops. Le sel était, et a longtemps été une ressource stratégique; car en plus de servir d'épice, le sel est utilise dans la conservation d'aliments, et les populations agricultrice, qui consomme moins de viande doivent supplémenter leur apport par du sel. La région a donc été très riche par le passe. 
+	L'utilisation de releves geophysique dans la campagne de fouille a permis de mettre en evidence l'aspect structure des sites d'ateliers du briquetage, que l'ont pensait jusqu'ici comme des "depotoirs" pour des dechets de productions.  
+
+	\newpage
 	\newpage
 	\subsection{Détections d'objets}
 	Nous avons décidé de débuter nos recherches de détections de formes par des solutions simples, avec l'attente qu'elle nous donnent des résultats de bonne qualité. L'attrait de ces méthodes étaient principalement qu'elles ne requiert pas de quantité de données importante, et qu'elles étaient a notre porte d'un point de vue académique. Nous avons donc approche le problème de deux façons différentes:
