@@ -15,9 +15,9 @@
 \usepackage{listings}
 \usepackage{color}
 \usepackage[table,xcdraw]{xcolor}
-\usepackage{pdflscape}
 \usepackage{afterpage}
 \usepackage{capt-of}
+\usepackage{rotating}
 
 \graphicspath{ {images/}}
 \addbibresource{Biblio.bib}
@@ -162,28 +162,9 @@
 	\subsubsection{Démarche}
 	Comme inSite est un projet non pas de développement, mais de recherche, nous utilisons une démarche différentes de celle trouve habituellement dans les PST: nous passons une grande partie de notre temps a faire des recherches, et nous n'écrivons que des petits scripts, qui répondent a une tache particulière. Par exemple, l'application de l'algorithme de Canny, pour la détection de bords sur les relevés, ou le découpage des cartes en carres pour l'analyse. Quelques exemples sont disponibles en Annexe. Nous voulons d'abord obtenir une connaissance sur la mise en oeuvre de methode de traitement informatise de releves geophysiques. Par consequent, nous ne construisons pas de "produit", mais un ensemble de connaissance, qui sera transmis a travers des rapports comme celui ci, mais aussi par la mise a disponibilite a tous de notre travail.
 	\subsection{Planning}
-	Un planning definitif est difficile a mettre en place pour une activite de recherche, car les resultats obtenu peuvent grandement affecter la facon dont nous repartissons le travail, et les problematiques que nous cherchons a resoudre. Cependant, on peut avoir une idee generale du planning et de la repartition des taches dans le temps. Un diagramme de Gantt est une excellente facon de voir cette repartition :
+	Un planning definitif est difficile a mettre en place pour une activite de recherche, car les resultats obtenu peuvent grandement affecter la facon dont nous repartissons le travail, et les problematiques que nous cherchons a resoudre. Cependant, on peut avoir une idee generale du planning et de la repartition des taches dans le temps. Un diagramme de Gantt est une excellente facon de voir cette repartition : voir annexe.
 \newpage
 
-
-	\subsubsection{Dates Clefs}
-
-	\subsection{Gestion des risques}
-	Nous definissons un risques par un aleas pouvant nous ralentir ou nous empecher d'atteindre nos objectifs. Sachant que nous avons une demarche de recherche, et non pas de developpement d'un produit, defini par un cahier des taches, ces risques sont differents. Il est en effet possible que le projet se deroule sans problemes, mais que nous parvenions pas a atteindre nos objectifs, parce qu'ils ne peuvent pas l'etre, dans l'etat actuel des connaissances. 
-	Cependant des risques subsident, risque que nous avons tenter de minimiser par les solutions suivantes: 
-	\begin{table}[]
-		\centering
-		\caption{My caption}
-		\label{my-label}
-		\begin{tabular}{ll}
-			\hline
-			\multicolumn{1}{|l|}{Probleme}                & \multicolumn{1}{l|}{Solution}                                                                     \\ \hline
-			\multicolumn{1}{|l|}{Versioning}              & \multicolumn{1}{l|}{Utilisation de GitHub}                                                        \\ \hline
-			\multicolumn{1}{|l|}{Sauvegarde des donnees}  & \multicolumn{1}{l|}{Utilisations de plusieurs backups} \\ \hline
-			\multicolumn{1}{|l|}{Manque de connaissances} & \multicolumn{1}{l|}{Mise en place d'un creneau dedie a la recherche}                              \\ \hline
-			                                              &                                                                                                  
-		\end{tabular}
-	\end{table}
 	\subsection{Langages et technologies utilisées}
 	Pour simplifier le développement, nous utilisons Python2 avec les librairies numpy, pyplot, cv2, qui possèdent de nombreuse fonctions mathématique et d'analyse d'image déjà implémentées.
 	\newpage
@@ -574,8 +555,34 @@ Nous pouvons encore ajouter un certains nombre d'exemples en decoupant une zone 
 \newpage
 \section{Annexes}
 
-
-
+\subsection{Planning}
+\afterpage{
+	\clearpage
+	\thispagestyle{empty}
+	\begin{sidewaystable}
+		\centering
+		\caption{Planning -- GANTT}
+		\label{my-label}
+		\begin{tabular}{l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+			\cline{2-16}
+																 & 15/11              & 01/12           & 15/12              & 01/01/18            & 15/01               & 01/02            & 15/02               & 01/03               & 15/03                 & 01/04              & 15/04                 & 01/05                & 15/05                   & 01/06               & 15/06                  \\ \hline
+			\multicolumn{1}{|l|}{Test initiaux}                                                                      & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
+			\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Nettoyage\\  du bruit\end{tabular}}                      &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
+			\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Recherches \end{tabular}}  & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} \\ \hline
+			\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Generation\\  d'exemples\end{tabular}}                   &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
+			\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Construction \\ du corpus \\ de donnees\end{tabular}}    &                          &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
+			\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Ecriture du \\ rapport de\\  mi-parcours\end{tabular}}   &                          & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{FE0000} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
+			\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Construction \\ d'un CNN\end{tabular}}                   &                          &                          &                          &                          &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
+			\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Analyse des \\ resultats \end{tabular}}      &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{FE0000} & \cellcolor[HTML]{FE0000} &                          &                          &                          &                          &                          &                          &                          \\ \hline
+			\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Rafinement et \\ amelioration\end{tabular}}    &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          \\ \hline
+			\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Extension\\  du CNN\end{tabular}}                        &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          \\ \hline
+			\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Analyse des\\  resultats\end{tabular}}      &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          \\ \hline
+			\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Rafinement et \\ amelioration\end{tabular}}    &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{FE0000} & \cellcolor[HTML]{FE0000} & \cellcolor[HTML]{FE0000} \\ \hline
+			\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Ecriture du \\ rapport\end{tabular}} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{FE0000} & \cellcolor[HTML]{FE0000} \\ \hline
+		\end{tabular}
+	\end{sidewaystable}
+	\clearpage
+}
 
 \subsection{Scripts}
 \subsubsection{Script appliquant Canny sur tous nos relevés}
@@ -585,37 +592,6 @@ Nous pouvons encore ajouter un certains nombre d'exemples en decoupant une zone 
 
 \subsubsection{Script decoupant nos relevés en carrés de 96x96}
 \lstinputlisting[language=python]{cutimage.py}
-
-\subsubsection{Diagramme de Gantt}
-\afterpage{
-	\clearpage
-	\thispagestyle{empty}
-	\begin{landscape}
-		\begin{table}[]
-			\centering
-			\caption{My caption}
-			\label{my-label}
-			\begin{tabular}{l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
-				\cline{2-16}
-																	 & 15/11              & 01/12           & 15/12              & 01/01/18            & 15/01               & 01/02            & 15/02               & 01/03               & 15/03                 & 01/04              & 15/04                 & 01/05                & 15/05                   & 01/06               & 15/06                  \\ \hline
-				\multicolumn{1}{|l|}{Test initiaux}                                                                      & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
-				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Nettoyage\\  du bruit\end{tabular}}                      &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
-				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Recherches \end{tabular}}  & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} \\ \hline
-				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Generation\\  d'exemples\end{tabular}}                   &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
-				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Construction \\ du corpus \\ de donnees\end{tabular}}    &                          &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
-				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Ecriture du \\ rapport de\\  mi-parcours\end{tabular}}   &                          & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{FE0000} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
-				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Construction \\ d'un CNN\end{tabular}}                   &                          &                          &                          &                          &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
-				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Analyse des \\ resultats \end{tabular}}      &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{FE0000} & \cellcolor[HTML]{FE0000} &                          &                          &                          &                          &                          &                          &                          \\ \hline
-				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Rafinement et \\ amelioration\end{tabular}}    &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          &                          &                          \\ \hline
-				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Extension\\  du CNN\end{tabular}}                        &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          &                          &                          &                          \\ \hline
-				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Analyse des\\  resultats\end{tabular}}      &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} &                          &                          \\ \hline
-				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Rafinement et \\ amelioration\end{tabular}}    &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{FE0000} & \cellcolor[HTML]{FE0000} & \cellcolor[HTML]{FE0000} \\ \hline
-				\multicolumn{1}{|l|}{\begin{tabular}[c]{@{}l@{}}Ecriture du \\ rapport\end{tabular}} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{34FF34} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{F8FF00} & \cellcolor[HTML]{FE0000} & \cellcolor[HTML]{FE0000} \\ \hline
-			\end{tabular}
-		\end{table}
-	\end{landscape}
-	\clearpage
-	}
 
 
 \medskip
