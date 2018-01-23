@@ -164,7 +164,20 @@
 	\subsection{Planning}
 	Un planning definitif est difficile a mettre en place pour une activite de recherche, car les resultats obtenu peuvent grandement affecter la facon dont nous repartissons le travail, et les problematiques que nous cherchons a resoudre. Cependant, on peut avoir une idee generale du planning et de la repartition des taches dans le temps. Un diagramme de Gantt est une excellente facon de voir cette repartition : voir annexe.
 \newpage
-
+	\subsection{Gestion des risques}
+	Un risques est un aleas qui contreviendrait a l'atteinte de nos objectifs. Ces risques dependent bien entendu du type de projet que nous cherchons a entreprendre, et un projet de recherche pose des problematiques differentes de celles d'un projet ou l'on cherche a construire un produit. Cependant il est important de pouvoir analyser ces risques pour pouvoir tenter de les mitiger. 
+\begin{table}[ht]
+	\centering
+	\caption{Tableaux de mitigation des risques}
+	\label{my-label}
+	\begin{tabular}{l|l|l|l|}
+		\cline{2-4}
+		& Importance & Probabilite & Solutions                                 \\ \hline
+		\multicolumn{1}{|l|}{Perte de donnees}       & Eleve      & Faible      & Utilisation de multiples backups          \\ \hline
+		\multicolumn{1}{|l|}{Versionning}            & Faible     & Moyenne     & Utilisation de git                        \\ \hline
+		\multicolumn{1}{|l|}{Manque de connaissance} & Moyenne    & Moyenne     & \begin{tabular}[c]{@{}l@{}}Amenagement de temps\\  dedie a la recherche\end{tabular}\\ \hline
+	\end{tabular}
+\end{table}
 	\subsection{Langages et technologies utilisées}
 	Pour simplifier le développement, nous utilisons Python2 avec les librairies numpy, pyplot, cv2, qui possèdent de nombreuse fonctions mathématique et d'analyse d'image déjà implémentées.
 	\newpage
